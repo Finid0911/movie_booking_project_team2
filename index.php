@@ -11,6 +11,9 @@
     <h1>
         Website quản lý bán vé xem phim
     </h1>
+    <p>
+        git check 1
+    </p>
 </body>
 
 </html>
