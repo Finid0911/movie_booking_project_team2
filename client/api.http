@@ -1,0 +1,17 @@
+### GET 
+GET http://localhost:800/movie_booking_project_team2/api/v1/movies
+
+
+### GET By ID 
+GET http://localhost:800/movie_booking_project_team2/api/v1/movies/e2368c36-734a-11ee-a0a4-f8b46aa29aed
+
+
+### Post 
+POST http://localhost:800/movie_booking_project_team2/api/v1/movies
+Content-Type: application/json
+
+{
+    "TenPhim": "f",
+    "AnhDaiDien": "g",
+    "NamSX": "2002"
+}
