@@ -1,3 +1,0 @@
-RewriteEngine On
-RewriteBase /movie_booking_project_team2/
-RewriteRule ^api/v1/movies/([0-9]+)$ server/movies.php?id=$1 [L]
