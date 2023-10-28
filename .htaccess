@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Chuyển hướng tất cả các yêu cầu không tương tự tệp hoặc thư mục đến server.php
+
+RewriteRule ^(.*)$ server/server.php [L]
