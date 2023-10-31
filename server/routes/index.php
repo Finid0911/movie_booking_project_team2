@@ -15,7 +15,8 @@ $controllerMappings = array(
     'movies' => 'MoviesController',
     'users' => 'UsersController',
     'chairs' => 'ChairsController',
-
+    'access' => 'AccessController',
+    'chairtype' => 'ChairTypeController',
 );
 
 if (count($uriSegments) >= 4 && !empty($uriSegments) && isset($controllerMappings[$uriSegments[4]])) {
