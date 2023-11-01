@@ -1,38 +1,39 @@
 <?php
+
 include("./models/Connector.php");
 include("BaseController.php");
 
-class UsersController extends BaseController
+class PhongController extends BaseController
 {
-    private $table = "thanh_vien";
-    private $primaryKey = "ma_thanh_vien";
+    private $table = "Phong";
+    private $primaryKey = "MaPhong";
 
     public function __construct($requestMethod)
     {
         parent::__construct($requestMethod);
     }
 
-    public function getUsers()
+    public function getPhong()
     {
-        $users = parent::get($this->table);
+        $phong = parent::get($this->table);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($users);
+        $response['body'] = json_encode($phong);
         return $response;
     }
 
-    public function getUserById($id)
+    public function getPhongById($id)
     {
-        $user = parent::getById($this->table, $this->primaryKey, $id);
-        if ($user) {
+        $phong = parent::getById($this->table, $this->primaryKey, $id);
+        if ($phong) {
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = json_encode($user);
+            $response['body'] = json_encode($phong);
         } else {
             $response = $this->notFoundResponse();
         }
         return $response;
     }
 
-    public function createUser()
+    public function createPhong()
     {
         $input = (array) json_decode(file_get_contents('php://input'), true);
         $result = parent::post($this->table, $input);
@@ -46,7 +47,7 @@ class UsersController extends BaseController
         return $response;
     }
 
-    public function updateUser($id)
+    public function updatePhong($id)
     {
         $input = (array) json_decode(file_get_contents('php://input'), true);
         $result = parent::put($this->table, $this->primaryKey, $id, $input);
@@ -59,7 +60,7 @@ class UsersController extends BaseController
         return $response;
     }
 
-    public function deleteUser($id)
+    public function deletePhong($id)
     {
         $result = parent::delete($this->table, $this->primaryKey, $id);
         if ($result) {
@@ -83,19 +84,19 @@ class UsersController extends BaseController
         switch ($this->requestMethod) {
             case 'GET':
                 if ($id) {
-                    $response = $this->getUserById($id);
+                    $response = $this->getPhongById($id);
                 } else {
-                    $response = $this->getUsers();
+                    $response = $this->getPhong();
                 }
                 break;
             case 'POST':
-                $response = $this->createUser();
+                $response = $this->createPhong();
                 break;
             case 'PUT':
-                $response = $this->updateUser($id);
+                $response = $this->updatePhong($id);
                 break;
             case 'DELETE':
-                $response = $this->deleteUser($id);
+                $response = $this->deletePhong($id);
                 break;
             default:
                 $response = $this->notFoundResponse();

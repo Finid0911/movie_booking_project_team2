@@ -2,40 +2,44 @@
 include("./models/Connector.php");
 include("BaseController.php");
 
-class UsersController extends BaseController
+class KhungThoiGianController extends BaseController
 {
-    private $table = "thanh_vien";
-    private $primaryKey = "ma_thanh_vien";
+    private $table = "ktg";
+    private $primaryKey = "MaKTG";
 
     public function __construct($requestMethod)
     {
         parent::__construct($requestMethod);
     }
 
-    public function getUsers()
+    public function getKhungThoiGian()
     {
-        $users = parent::get($this->table);
+        $khungThoiGian = parent::get($this->table);
+
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($users);
+        $response['body'] = json_encode($khungThoiGian);
         return $response;
     }
 
-    public function getUserById($id)
+    public function getKhungThoiGianById($id)
     {
-        $user = parent::getById($this->table, $this->primaryKey, $id);
-        if ($user) {
+        $khungThoiGian = parent::getById($this->table, $this->primaryKey, $id);
+
+        if ($khungThoiGian) {
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = json_encode($user);
+            $response['body'] = json_encode($khungThoiGian);
         } else {
             $response = $this->notFoundResponse();
         }
+
         return $response;
     }
 
-    public function createUser()
+    public function createKhungThoiGian()
     {
         $input = (array) json_decode(file_get_contents('php://input'), true);
         $result = parent::post($this->table, $input);
+
         if ($result) {
             $response['status_code_header'] = 'HTTP/1.1 201 Created';
             $response['body'] = json_encode($result);
@@ -43,31 +47,36 @@ class UsersController extends BaseController
             $response['status_code_header'] = 'HTTP/1.1 500 Internal Server Error';
             $response['body'] = null;
         }
+
         return $response;
     }
 
-    public function updateUser($id)
+    public function updateKhungThoiGian($id)
     {
         $input = (array) json_decode(file_get_contents('php://input'), true);
         $result = parent::put($this->table, $this->primaryKey, $id, $input);
+
         if ($result) {
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = json_encode($result);
         } else {
             $response = $this->notFoundResponse();
         }
+
         return $response;
     }
 
-    public function deleteUser($id)
+    public function deleteKhungThoiGian($id)
     {
         $result = parent::delete($this->table, $this->primaryKey, $id);
+
         if ($result) {
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = null;
         } else {
             $response = $this->notFoundResponse();
         }
+
         return $response;
     }
 
@@ -83,24 +92,25 @@ class UsersController extends BaseController
         switch ($this->requestMethod) {
             case 'GET':
                 if ($id) {
-                    $response = $this->getUserById($id);
+                    $response = $this->getKhungThoiGianById($id);
                 } else {
-                    $response = $this->getUsers();
+                    $response = $this->getKhungThoiGian();
                 }
                 break;
             case 'POST':
-                $response = $this->createUser();
+                $response = $this->createKhungThoiGian();
                 break;
             case 'PUT':
-                $response = $this->updateUser($id);
+                $response = $this->updateKhungThoiGian($id);
                 break;
             case 'DELETE':
-                $response = $this->deleteUser($id);
+                $response = $this->deleteKhungThoiGian($id);
                 break;
             default:
                 $response = $this->notFoundResponse();
                 break;
         }
+
         header($response['status_code_header']);
         if ($response['body']) {
             echo $response['body'];
