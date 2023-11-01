@@ -6,6 +6,7 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 // Parse the request URI and split it into an array
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+
 // Example: movie_booking_project_team2/api/v1/movies
 $uriSegments = array_filter(explode("/", $uri));
 
@@ -17,7 +18,11 @@ $controllerMappings = array(
     'formats' => 'FormatsController',
     'labels' => 'LabelsController',
     'genres' => 'GenresController',
-    'nations' => 'NationsController',
+    'nations' => 'NationsController',    'employees' => 'EmployeesController',
+    'roles' => 'RolesController',
+    'gia' => 'GiaController',
+    'ktg' => 'KhungThoiGianController',
+    'phong' => 'PhongController'
 );
 
 if (count($uriSegments) >= 4 && !empty($uriSegments) && isset($controllerMappings[$uriSegments[4]])) {
@@ -28,10 +33,9 @@ if (count($uriSegments) >= 4 && !empty($uriSegments) && isset($controllerMapping
     // Check controller file is exist 
     if (file_exists($controllerFile)) {
         // Ex: include "./controllers/MoviesController"
-        include ($controllerFile);
+        include $controllerFile;
         // Ex: $instance = new MoviesController('GET')
         $controllerInstance = new $controllerName($requestMethod);
-        echo isset($controllerInstance);
         // http://localhost:800/movie_booking_project_team2/api/v1/movies/e2368c36-734a-11ee-a0a4-f8b46aa29aed
         $id = null;
         if (isset($uriSegments[5])) {
