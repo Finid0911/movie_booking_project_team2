@@ -1,38 +1,39 @@
 <?php
+
 include("./models/Connector.php");
 include("BaseController.php");
 
-class UsersController extends BaseController
+class GiaController extends BaseController
 {
-    private $table = "thanh_vien";
-    private $primaryKey = "ma_thanh_vien";
+    private $table = "gia";
+    private $primaryKey = "MaGia";
 
     public function __construct($requestMethod)
     {
         parent::__construct($requestMethod);
     }
 
-    public function getUsers()
+    public function getGia()
     {
-        $users = parent::get($this->table);
+        $gia = parent::get($this->table);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($users);
+        $response['body'] = json_encode($gia);
         return $response;
     }
-
-    public function getUserById($id)
+ 
+    public function getGiaById($id)
     {
-        $user = parent::getById($this->table, $this->primaryKey, $id);
-        if ($user) {
+        $gia = parent::getById($this->table, $this->primaryKey, $id);
+        if ($gia) {
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = json_encode($user);
+            $response['body'] = json_encode($gia);
         } else {
             $response = $this->notFoundResponse();
         }
         return $response;
     }
 
-    public function createUser()
+    public function createGia()
     {
         $input = (array) json_decode(file_get_contents('php://input'), true);
         $result = parent::post($this->table, $input);
@@ -46,7 +47,7 @@ class UsersController extends BaseController
         return $response;
     }
 
-    public function updateUser($id)
+    public function updateGia($id)
     {
         $input = (array) json_decode(file_get_contents('php://input'), true);
         $result = parent::put($this->table, $this->primaryKey, $id, $input);
@@ -59,7 +60,7 @@ class UsersController extends BaseController
         return $response;
     }
 
-    public function deleteUser($id)
+    public function deleteGia($id)
     {
         $result = parent::delete($this->table, $this->primaryKey, $id);
         if ($result) {
@@ -83,19 +84,19 @@ class UsersController extends BaseController
         switch ($this->requestMethod) {
             case 'GET':
                 if ($id) {
-                    $response = $this->getUserById($id);
+                    $response = $this->getGiaById($id);
                 } else {
-                    $response = $this->getUsers();
+                    $response = $this->getGia();
                 }
                 break;
             case 'POST':
-                $response = $this->createUser();
+                $response = $this->createGia();
                 break;
             case 'PUT':
-                $response = $this->updateUser($id);
+                $response = $this->updateGia($id);
                 break;
             case 'DELETE':
-                $response = $this->deleteUser($id);
+                $response = $this->deleteGia($id);
                 break;
             default:
                 $response = $this->notFoundResponse();
