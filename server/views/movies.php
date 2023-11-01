@@ -129,8 +129,7 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="http://localhost/movie_booking_project_team2/server/views/movies.php"
-                                    class="menu-link">
+                                <a href="" class="menu-link">
                                     <div data-i18n="Account">Quản lý Phim</div>
                                 </a>
                             </li>
@@ -435,6 +434,8 @@
                                                                 class="bx bx-edit-alt me-1"></i> Edit</a>
                                                         <a class="dropdown-item" href="javascript:void(0);"><i
                                                                 class="bx bx-trash me-1"></i> Delete</a>
+                                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                                class="bx bx-trash me-1"></i> Detail</a>
                                                     </div>
                                                 </div>
                                             </td>
