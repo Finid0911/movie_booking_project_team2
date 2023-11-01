@@ -1,6 +1,7 @@
 <?php
 include("./models/Connector.php");
 include("BaseController.php");
+
 class MoviesController extends BaseController
 {
   private $tableId = "MaPhim";
@@ -13,9 +14,7 @@ class MoviesController extends BaseController
 
   public function getMovies()
   {
-
-    $movies = parent::get("Phim");
-
+    $movies = parent::get($this->table);
     $response['status_code_header'] = 'HTTP/1.1 200 OK';
     $response['body'] = json_encode($movies);
     return $response;
