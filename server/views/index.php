@@ -129,30 +129,29 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="http://localhost/movie_booking_project_team2/server/views/movies.php"
-                                    class="menu-link">
+                                <span class="menu-link nav" id="nav-phim">
                                     <div data-i18n="Account">Quản lý Phim</div>
-                                </a>
+                                </span>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-dinhdang">
                                     <div data-i18n="Notifications">Quản lý Định dạng</div>
-                                </a>
+                                </span>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-theloai">
                                     <div data-i18n="Connections">Quản lý Thể loại</div>
-                                </a>
+                                </span>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-quocgia">
                                     <div data-i18n="Notifications">Quản lý Quốc gia</div>
-                                </a>
+                                </span>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-nhan">
                                     <div data-i18n="Connections">Quản lý Nhãn</div>
-                                </a>
+                                </span>
                             </li>
                         </ul>
                     </li>
@@ -247,54 +246,6 @@
                         </ul>
                     </li>
 
-
-                    <!-- Forms & Tables -->
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp;
-                            Tables</span></li>
-                    <!-- Forms -->
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-detail"></i>
-                            <div data-i18n="Form Elements">Form Elements</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="forms-basic-inputs.html" class="menu-link">
-                                    <div data-i18n="Basic Inputs">Basic Inputs</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="forms-input-groups.html" class="menu-link">
-                                    <div data-i18n="Input groups">Input groups</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-detail"></i>
-                            <div data-i18n="Form Layouts">Form Layouts</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="form-layouts-vertical.html" class="menu-link">
-                                    <div data-i18n="Vertical Form">Vertical Form</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="form-layouts-horizontal.html" class="menu-link">
-                                    <div data-i18n="Horizontal Form">Horizontal Form</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Tables -->
-                    <li class="menu-item">
-                        <a href="tables-basic.html" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-table"></i>
-                            <div data-i18n="Tables">Tables</div>
-                        </a>
-                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -400,46 +351,9 @@
                         <h5 class="card-header">Bordered Table</h5>
                         <div class="card-body">
                             <div class="table-responsive text-nowrap">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Mã phim</th>
-                                            <th>Tên phim</th>
-                                            <th>Ảnh đại diện</th>
-                                            <th>Năm sản xuất</th>
-                                            <th>Thời lượng</th>
-                                            <th>Ngày khởi chiếu</th>
-                                            <th>Đạo diễn</th>
-                                            <th>Diễn viên chính</th>
-                                            <th>Nội dung</th>
-                                            <th>Trailer</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Angular Project</strong>
-                                            </td>
-                                            <td>Albert Cook</td>
-                                            <td></td>
-                                            <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="bx bx-trash me-1"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                <table class="table table-bordered" id="moviesData">
+                                    <thead id="t-header"></thead>
+                                    <tbody class="t-body"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -516,6 +430,8 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script src="../assets/js/pages/movies.js"></script>
 </body>
 
 </html>

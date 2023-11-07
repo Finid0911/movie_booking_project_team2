@@ -34,4 +34,5 @@ function getAllMovies() {
 // A $( document ).ready() block.
 $(document).ready(function () {
   getAllMovies();
+  a = [];
 });
