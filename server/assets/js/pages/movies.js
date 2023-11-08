@@ -60,12 +60,12 @@ function creatNewMovies() {
   });
 }
 
-$(document).ready(function () {
-  $(".nav").on("click", function () {
-    var id = $(this).attr("id");
-    handleGetData(id);
-  });
-});
+// $(document).ready(function () {
+//   $(".nav").on("click", function () {
+//     var id = $(this).attr("id");
+//     handleGetData(id);
+//   });
+// });
 
 function handleGetData(id) {
   console.log(id);

@@ -49,7 +49,6 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a href="index.html" class="app-brand-link">
@@ -110,8 +109,8 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item active">
-                        <a href="index.html" class="menu-link">
+                    <li class="menu-item">
+                        <a href="index.php" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
@@ -129,9 +128,9 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-phim">
+                                <a class="menu-link nav" id="nav-phim" href="?action=getMovie">
                                     <div data-i18n="Account">Quản lý Phim</div>
-                                </span>
+                                </a>
                             </li>
                             <li class="menu-item">
                                 <span class="menu-link nav" id="nav-dinhdang">
@@ -342,96 +341,45 @@
                     </div>
                 </nav>
 
-                <!-- / Navbar -->
-
-                <hr class="my-5" />
-                <div id="contentBox">
-                    <!-- Bordered Table -->
-                    <div class="card">
-                        <h5 class="card-header">Bordered Table</h5>
-                        <div class="card-body">
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-bordered" id="moviesData">
-                                    <thead id="t-header"></thead>
-                                    <tbody class="t-body"></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ Bordered Table -->
-                </div>
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    <div id="content">
-
-                    </div>
-                    <!-- / Content -->
-
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div
-                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                document.write(new Date().getFullYear());
-                                </script>
-                                , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank"
-                                    class="footer-link fw-bolder">ThemeSelection</a>
-                            </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4"
-                                    target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                                    Themes</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank" class="footer-link me-4">Support</a>
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        </h4>
+                        <!-- Hoverable Table rows -->
+                        <div class="card">
+                            <div class="table-responsive text-nowrap">
+                                <?php
+                                    include("menu.php");
+                                ?>
                             </div>
                         </div>
-                    </footer>
-                    <!-- / Footer -->
+                    </div>
+                    <!-- Content -->
 
-                    <div class="content-backdrop fade"></div>
-                </div>
-                <!-- Content wrapper -->
-            </div>
-            <!-- / Layout page -->
-        </div>
+                    <!-- Core JS -->
+                    <!-- build:js assets/vendor/js/core.js -->
+                    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+                    <script src="../assets/vendor/libs/popper/popper.js"></script>
+                    <script src="../assets/vendor/js/bootstrap.js"></script>
+                    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
-    <!-- / Layout wrapper -->
+                    <script src="../assets/vendor/js/menu.js"></script>
+                    <!-- endbuild -->
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+                    <!-- Vendors JS -->
+                    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-    <script src="../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
+                    <!-- Main JS -->
+                    <script src="../assets/js/main.js"></script>
 
-    <!-- Vendors JS -->
-    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+                    <!-- Page JS -->
+                    <script src="../assets/js/dashboards-analytics.js"></script>
 
-    <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
+                    <!-- Place this tag in your head or just before your close body tag. -->
+                    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-    <!-- Page JS -->
-    <script src="../assets/js/dashboards-analytics.js"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <script src="../assets/js/pages/movies.js"></script>
+                    <script src="../assets/js/pages/movies.js"></script>
 </body>
 
 </html>
