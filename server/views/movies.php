@@ -129,29 +129,29 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-phim">
+                                <a href="" class="menu-link">
                                     <div data-i18n="Account">Quản lý Phim</div>
-                                </span>
+                                </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-dinhdang">
+                                <a href="" class="menu-link">
                                     <div data-i18n="Notifications">Quản lý Định dạng</div>
-                                </span>
+                                </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-theloai">
+                                <a href="" class="menu-link">
                                     <div data-i18n="Connections">Quản lý Thể loại</div>
-                                </span>
+                                </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-quocgia">
+                                <a href="" class="menu-link">
                                     <div data-i18n="Notifications">Quản lý Quốc gia</div>
-                                </span>
+                                </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-nhan">
+                                <a href="" class="menu-link">
                                     <div data-i18n="Connections">Quản lý Nhãn</div>
-                                </span>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -246,6 +246,54 @@
                         </ul>
                     </li>
 
+
+                    <!-- Forms & Tables -->
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp;
+                            Tables</span></li>
+                    <!-- Forms -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-detail"></i>
+                            <div data-i18n="Form Elements">Form Elements</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="forms-basic-inputs.html" class="menu-link">
+                                    <div data-i18n="Basic Inputs">Basic Inputs</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="forms-input-groups.html" class="menu-link">
+                                    <div data-i18n="Input groups">Input groups</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-detail"></i>
+                            <div data-i18n="Form Layouts">Form Layouts</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="form-layouts-vertical.html" class="menu-link">
+                                    <div data-i18n="Vertical Form">Vertical Form</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="form-layouts-horizontal.html" class="menu-link">
+                                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Tables -->
+                    <li class="menu-item">
+                        <a href="tables-basic.html" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-table"></i>
+                            <div data-i18n="Tables">Tables</div>
+                        </a>
+                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -348,12 +396,26 @@
                 <div id="contentBox">
                     <!-- Bordered Table -->
                     <div class="card">
-                        <h5 class="card-header">Bordered Table</h5>
+                        <h5 class="card-header">Bảng phim</h5>
                         <div class="card-body">
                             <div class="table-responsive text-nowrap">
-                                <table class="table table-bordered" id="moviesData">
-                                    <thead id="t-header"></thead>
-                                    <tbody class="t-body"></tbody>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên phim</th>
+                                            <th>Năm sản xuất</th>
+                                            <th>Thời lượng</th>
+                                            <th>Ngày khởi chiếu</th>
+                                            <th>Đạo diễn</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                    <div class="list">
+
+                                    </div>
                                 </table>
                             </div>
                         </div>
@@ -425,13 +487,13 @@
     <!-- Main JS -->
     <script src="../assets/js/main.js"></script>
 
+    <script src="../assets/js/pages/movies.js"></script>
+
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <script src="../assets/js/pages/movies.js"></script>
 </body>
 
 </html>
