@@ -114,7 +114,7 @@ $('.login').submit(function(e) {
 		// var formInput = self.serialize();
 		// $.post(self.attr('action'),formInput, function(data){}); // end post
 }); // end submit
-		
+
 		
 
 function createErrTult(text, $elem){
