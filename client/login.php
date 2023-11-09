@@ -1,3 +1,73 @@
+
+<?php 
+    session_start();
+    // Nếu đã đăng nhập rồi thì chuyển về index
+    if ( isset($_SESSION['user_email']) )
+        {
+            header('location:index.php');
+        }
+
+    // if ( isset($_POST['login']) )   // Nếu người dùng nhấn vào nút Login
+    // {
+    //     // Lấy email và password đã nhập
+    //     $user_email = $_POST['user_email'];
+    //     $user_password = $_POST['user_password'];
+
+    //     if($user_email == 'user@gmail.com' && $user_password == '123456')
+    //     {
+    //         $_SESSION['user_email'] = $user_email;
+    //         header('location:index.php');
+    //     }
+    //     else 
+    //     {
+    //         echo '<p class="error-message">Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu.</p>';
+    //     }
+        
+    // }
+
+    function authenticateLogin($user_email, $user_password) {
+        // Thực hiện kết nối CSDL
+        $servername = 'localhost';
+        $username = 'root';
+        $password = '';
+        $dbname = 'qlyrap';
+    
+        $conn = new mysqli($servername, $username, $password, $dbname);
+    
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Lỗi kết nối CSDL: " . $conn->connect_error);
+        }
+    
+        // Truy vấn CSDL để xác thực đăng nhập
+        $stmt = $conn->prepare("SELECT * FROM thanh_vien WHERE Email = ? AND MatKhau = ?");
+        $stmt->bind_param("ss", $user_email, $user_password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $hoTen ='';
+    
+        if ($result->num_rows == 1) {
+            $_SESSION['user_email'] = $user_email;
+           
+            header('Location: index.php');
+            exit();
+        } else {
+            echo '<p class="error-message">Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu.</p>';
+        }
+    
+        $stmt->close();
+        $conn->close();
+    }
+    
+    if (isset($_POST['login'])) {
+        $user_email = $_POST['user_email'];
+        $user_password = $_POST['user_password'];
+    
+        authenticateLogin($user_email, $user_password);
+    }
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -36,6 +106,16 @@
     	<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>		
     <![endif]-->
+
+    
+<style>
+.error-message {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+</style>
 </head>
 
 <body>
@@ -205,7 +285,8 @@
         </div> -->
         
         <!-- Main content -->
-                <form id="login-form" class="login" method='get' novalidate=''>
+
+                <form id="login-form" class="login" method='post' action = "login.php">
                     <p class="login__title">sign in <br><span class="login-edition">welcome to A.Movie</span></p>
 
                     <!-- <div class="social social--colored">
@@ -217,19 +298,19 @@
                     <p class="login__tracker">or</p> -->
                     
                     <div class="field-wrap">
-                    <input type='email' placeholder='Email' name='user-email' class="login__input">
-                    <input type='password' placeholder='Password' name='user-password' class="login__input">
+                    <input type='email' placeholder='Email' name='user_email' class="login__input">
+                    <input type='password' placeholder='Password' name='user_password' class="login__input">
 
                     <input type='checkbox' id='#informed' class='login__check styled'>
                     <label for='#informed' class='login__check-info'>remember me</label>
                      </div>
                     
                     <div class="login__control">
-                        <button type='submit' class="btn btn-md btn--warning btn--wider">sign in</button>
+                        <button type='submit' name="login" class="btn btn-md btn--warning btn--wider">sign in</button>
                         <a href="#" class="login__tracker form__tracker">Forgot password?</a>
                     </div>
-                </form>
-        
+
+                    </form>
         <div class="clearfix"></div>
     </div>
 
@@ -295,11 +376,12 @@
         <!-- Form element -->
         <script src="js/external/form-element.js"></script>
         <!-- Form validation -->
-        <script src="js/form.js"></script>
+        
 
         <!-- Custom -->
         <script src="js/custom.js"></script>
         
-
 </body>
 </html>
+
+
