@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html>
 
@@ -40,8 +43,8 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]> 
-    	<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>		
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>		
     <![endif]-->
 </head>
 
@@ -204,13 +207,45 @@
                                 <img alt="" src="http://placehold.it/31x31">
                             </span>
                         </div>
-                        <a href="login.html" class="btn btn--sign btn--singin">
-                            Đăng ký / Đăng nhập
-                        </a>
-                        <ul class="auth__function">
-                            <li><a href="signup.html" class="auth__function-item">Đăng ký</a></li>
-                            <li><a href="login.html" class="auth__function-item">Đăng nhập</a></li>
-                        </ul>
+                        <?php
+                        // Thực hiện kết nối CSDL
+                        $servername = 'localhost';
+                        $username = 'root';
+                        $password = '';
+                        $dbname = 'qlyrap';
+
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Kiểm tra kết nối
+                        if ($conn->connect_error) {
+                            die("Lỗi kết nối CSDL: " . $conn->connect_error);
+                        }
+                        $stmt = $conn->prepare("SELECT HoTen FROM thanh_vien WHERE Email = ?");
+                        $stmt->bind_param("s", $_SESSION['user_email']);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if (!isset($_SESSION['user_email'])) {
+                            echo '  <a href="#" class="btn btn--sign btn--singin">Đăng ký / Đăng nhập</a>
+                                        <ul class="auth__function">
+                                            <li><a href="signup.php" class="auth__function-item">Đăng ký</a></li>
+                                            <li><a href="login.php" class="auth__function-item">Đăng nhập</a></li>
+                                        </ul>';
+                        } else {
+                            if ($result->num_rows == 1) {
+                                $row = $result->fetch_assoc();
+                                $user_name = $row['HoTen'];
+                                // Sử dụng biến $user_name để làm gì đó
+                                echo '  <a href="#" class="btn btn--sign btn--singin"> ' . $user_name . ' </a>
+                                            <ul class="auth__function">
+                                                <li><a href="logout.php" class="auth__function-item">Đăng xuất</a></li>
+                                            </ul>';
+
+                            }
+                        }
+
+                        ?>
+
 
                     </div>
                     <!-- <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">Book a
