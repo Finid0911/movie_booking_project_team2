@@ -12,6 +12,9 @@
         case "updateMovie":
             require("movies/updateMovie.php");
             break;
+        case "deleteMovie":
+            require("movies/deleteMovie.php");
+            break;
 
         default:
             echo "Action is invalid!";

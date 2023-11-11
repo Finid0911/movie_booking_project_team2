@@ -1,4 +1,7 @@
 <h5 class="card-header">Quản lý Phim</h5>
+<button>
+    <a href="?action=addMovie">Thêm mới</a>
+</button>
 <table class="table table-bordered table-hover" id="moviesData">
     <thead id="t-header">
         <tr>
@@ -30,7 +33,7 @@
             <td><?php echo $field["KhoiChieu"] ?></td>
             <td><?php echo $field["DaoDien"] ?></td>
             <td>
-                <a href="?action=addMovie">
+                <a href="?action=seedetail">
                     <img src="../assets/img/icons/info.png" style="width: 35px; height: 35px; margin-right: 5px"
                         alt="detail">
                 </a>
@@ -38,7 +41,7 @@
                     <img src=" ../assets/img/icons/edits.png" style="width: 35px; height: 35px; margin-right: 5px"
                         alt="edit">
                 </a>
-                <a>
+                <a href="?action=deleteMovie">
                     <img src="../assets/img/icons/remove.png" style="width: 35px; height: 35px; margin-right: 5px"
                         alt="delete">
                 </a>
