@@ -1,14 +1,4 @@
 RewriteEngine On
-
-# Chuyển hướng yêu cầu bắt đầu bằng /api/v1/ đến server.php
-RewriteRule ^api/v1/(.*)$ server/server.php [L]
-
-# Chuyển hướng tất cả các yêu cầu không tương tự tệp hoặc thư mục đến file hoặc thư mục tương ứng
-
-# Chuyển hướng yêu cầu bắt đầu bằng /api/v1/ đến server.php
-RewriteRule ^api/v1/(.*)$ server/server.php [L]
-
-# Chuyển hướng tất cả các yêu cầu không tương tự tệp hoặc thư mục đến file hoặc thư mục tương ứng
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^views/([^/]+)\.php$ server/views/$1.php [L]
