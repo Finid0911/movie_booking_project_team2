@@ -46,7 +46,6 @@ class BaseController
         if ($result->num_rows == 1) {
             $data = $result->fetch_assoc();
         }
-
         return $data;
 
     }

@@ -23,7 +23,6 @@ class MoviesController extends BaseController
   public function getMovieById($id)
   {
     $movie = parent::getById($this->table, $this->tableId, $id);
-    echo json_encode($movie);
     $response['status_code_header'] = 'HTTP/1.1 200 OK';
     $response['body'] = json_encode($movie);
     return $response;
