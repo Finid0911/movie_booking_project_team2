@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html>
 
@@ -40,52 +43,17 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]> 
-    	<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>		
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>		
     <![endif]-->
-
-    <style>
-        .header-wrapper .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .logo {
-            position: relative;
-            inset: 0;
-        }
-
-        .header-user {
-            position: relative;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            gap: 0 12px;
-        }
-
-        .auth--home {
-            position: relative;
-            inset: 0;
-            display: flex;
-            align-items: center;
-
-        }
-
-        .btn--singin {
-            position: relative !important;
-            inset: 0 !important;
-        }
-
-        .btn--singin::after {
-            top: 7px !important;
-        }
-    </style>
 </head>
 
 <body>
     <div class="wrapper">
+        <!-- Banner -->
+        <div class="banner-top">
+            <img alt='top banner' src="http://placehold.it/1600x90">
+        </div>
 
         <!-- Header section -->
         <header class="header-wrapper header-wrapper--home">
@@ -95,24 +63,193 @@
                     <img alt='logo' src="images/logo.png">
                 </a>
 
+                <!-- Main website navigation-->
+                <nav id="navigation-box">
+                    <!-- Toggle for mobile menu mode -->
+                    <a href="#" id="navigation-toggle">
+                        <span class="menu-icon">
+                            <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
+                                <span class="lines"></span>
+                            </span>
+                        </span>
+                    </a>
+
+                    <!-- Link navigation -->
+                    <ul id="navigation">
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href="#">Pages</a>
+                            <ul>
+                                <li class="menu__nav-item"><a href="movie-page-left.html">Single movie (rigth
+                                        sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="movie-page-right.html">Single movie (left
+                                        sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="movie-page-full.html">Single movie (full widht)</a>
+                                </li>
+                                <li class="menu__nav-item"><a href="movie-list-left.html">Movies list (rigth
+                                        sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="movie-list-right.html">Movies list (left
+                                        sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="movie-list-full.html">Movies list (full widht)</a>
+                                </li>
+                                <li class="menu__nav-item"><a href="single-cinema.html">Single cinema</a></li>
+                                <li class="menu__nav-item"><a href="cinema-list.html">Cinemas list</a></li>
+                                <li class="menu__nav-item"><a href="trailer.html">Trailers</a></li>
+                                <li class="menu__nav-item"><a href="rates-left.html">Rates (rigth sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="rates-right.html">Rates (left sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="rates-full.html">Rates (full widht)</a></li>
+                                <li class="menu__nav-item"><a href="offers.html">Offers</a></li>
+                                <li class="menu__nav-item"><a href="contact.html">Contact us</a></li>
+                                <li class="menu__nav-item"><a href="404.html">404 error</a></li>
+                                <li class="menu__nav-item"><a href="coming-soon.html">Coming soon</a></li>
+                                <li class="menu__nav-item"><a href="login.html">Login/Registration</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href="page-elements.html">Features</a>
+                            <ul>
+                                <li class="menu__nav-item"><a href="typography.html">Typography</a></li>
+                                <li class="menu__nav-item"><a href="page-elements.html">Shortcodes</a></li>
+                                <li class="menu__nav-item"><a href="column.html">Columns</a></li>
+                                <li class="menu__nav-item"><a href="icon-font.html">Icons</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href="page-elements.html">Booking steps</a>
+                            <ul>
+                                <li class="menu__nav-item"><a href="book1.html">Booking step 1</a></li>
+                                <li class="menu__nav-item"><a href="book2.html">Booking step 2</a></li>
+                                <li class="menu__nav-item"><a href="book3-buy.html">Booking step 3 (buy)</a></li>
+                                <li class="menu__nav-item"><a href="book3-reserve.html">Booking step 3 (reserve)</a>
+                                </li>
+                                <li class="menu__nav-item"><a href="book-final.html">Final ticket view</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href="gallery-four.html">Gallery</a>
+                            <ul>
+                                <li class="menu__nav-item"><a href="gallery-four.html">4 col gallery</a></li>
+                                <li class="menu__nav-item"><a href="gallery-three.html">3 col gallery</a></li>
+                                <li class="menu__nav-item"><a href="gallery-two.html">2 col gallery</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href="news-left.html">News</a>
+                            <ul>
+                                <li class="menu__nav-item"><a href="news-left.html">News (rigth sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="news-right.html">News (left sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="news-full.html">News (full widht)</a></li>
+                                <li class="menu__nav-item"><a href="single-page-left.html">Single post (rigth
+                                        sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="single-page-right.html">Single post (left
+                                        sidebar)</a></li>
+                                <li class="menu__nav-item"><a href="single-page-full.html">Single post (full widht)</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href="#">Mega menu</a>
+                            <ul class="mega-menu container">
+                                <li class="col-md-3 mega-menu__coloum">
+                                    <h4 class="mega-menu__heading">Now in the cinema</h4>
+                                    <ul class="mega-menu__list">
+                                        <li class="mega-menu__nav-item"><a href="#">The Counselor</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Bad Grandpa</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Blue Is the Warmest Color</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Capital</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Spinning Plates</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Bastards</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="col-md-3 mega-menu__coloum mega-menu__coloum--outheading">
+                                    <ul class="mega-menu__list">
+                                        <li class="mega-menu__nav-item"><a href="#">Gravity</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Captain Phillips</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Carrie</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Cloudy with a Chance of Meatballs
+                                                2</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="col-md-3 mega-menu__coloum">
+                                    <h4 class="mega-menu__heading">Ending soon</h4>
+                                    <ul class="mega-menu__list">
+                                        <li class="mega-menu__nav-item"><a href="#">Escape Plan</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Rush</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Prisoners</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Enough Said</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">The Fifth Estate</a></li>
+                                        <li class="mega-menu__nav-item"><a href="#">Runner Runner</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="col-md-3 mega-menu__coloum mega-menu__coloum--outheading">
+                                    <ul class="mega-menu__list">
+                                        <li class="mega-menu__nav-item"><a href="#">Insidious: Chapter 2</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
 
                 <!-- Additional header buttons / Auth and direct link to booking-->
-                <div class="control-panel header-user">
+                <div class="control-panel">
                     <div class="auth auth--home">
+                        <div class="auth__show">
+                            <span class="auth__image">
+                                <img alt="" src="http://placehold.it/31x31">
+                            </span>
+                        </div>
+                        <?php
+                        // Thực hiện kết nối CSDL
+                        $servername = 'localhost';
+                        $username = 'root';
+                        $password = '';
+                        $dbname = 'qlyrap';
 
-                        <a href="#" class="btn btn--sign btn--singin">
-                            me
-                        </a>
-                        <ul class="auth__function">
-                            <li><a href="#" class="auth__function-item">Watchlist</a></li>
-                            <li><a href="#" class="auth__function-item">Booked tickets</a></li>
-                            <li><a href="#" class="auth__function-item">Discussion</a></li>
-                            <li><a href="#" class="auth__function-item">Settings</a></li>
-                        </ul>
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Kiểm tra kết nối
+                        if ($conn->connect_error) {
+                            die("Lỗi kết nối CSDL: " . $conn->connect_error);
+                        }
+                        $stmt = $conn->prepare("SELECT HoTen FROM thanh_vien WHERE Email = ?");
+                        $stmt->bind_param("s", $_SESSION['user_email']);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if (!isset($_SESSION['user_email'])) {
+                            echo '  <a href="#" class="btn btn--sign btn--singin">Đăng ký / Đăng nhập</a>
+                                        <ul class="auth__function">
+                                            <li><a href="signup.php" class="auth__function-item">Đăng ký</a></li>
+                                            <li><a href="login.php" class="auth__function-item">Đăng nhập</a></li>
+                                        </ul>';
+                        } else {
+                            if ($result->num_rows == 1) {
+                                $row = $result->fetch_assoc();
+                                $user_name = $row['HoTen'];
+                                // Sử dụng biến $user_name để làm gì đó
+                                echo '  <a href="#" class="btn btn--sign btn--singin"> ' . $user_name . ' </a>
+                                            <ul class="auth__function">
+                                                <li><a href="logout.php" class="auth__function-item">Đăng xuất</a></li>
+                                            </ul>';
+
+                            }
+                        }
+
+                        ?>
+
 
                     </div>
-                    <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">Book a
-                        ticket</a>
+                    <!-- <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">Book a
+                        ticket</a> -->
                 </div>
 
             </div>
@@ -124,8 +261,159 @@
                 <ul>
 
                     <li data-transition="fade" data-slotamount="7" class="slide" data-slide='Rush.'>
-                        <img alt='' src="https://www.bhdstar.vn/wp-content/uploads/2018/03/U22-web-1.png">
+                        <img alt='' src="http://placehold.it/1920x616">
+                        <div class="caption slide__name margin-slider" data-x="right" data-y="80" data-splitin="chars"
+                            data-elementdelay="0.1" data-speed="700" data-start="1400" data-easing="easeOutBack"
+                            data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:0;transformOrigin:50% 50%;"
+                            data-frames="{ typ :lines;
+                                                 elementdelay :0.1;
+                                                 start:1650;
+                                                 speed:500;
+                                                 ease:Power3.easeOut;
+                                                 animation:x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:1;transformPerspective:600;transformOrigin:50% 50%;
+                                                 },
+                                                 { typ :lines;
+                                                 elementdelay :0.1;
+                                                 start:2150;
+                                                 speed:500;
+                                                 ease:Power3.easeOut;
+                                                 animation:x:0;y:0;z:0;rotationX:00;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:1;transformPerspective:600;transformOrigin:50% 50%;
+                                                 }
+                                                 " data-splitout="lines" data-endelementdelay="0.1"
+                            data-customout="x:-230;y:0;z:0;rotationX:0;rotationY:0;rotationZ:90;scaleX:0.2;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%"
+                            data-endspeed="500" data-end="8400" data-endeasing="Back.easeIn">
+                            RUSH
+                        </div>
+
+                        <div class="caption slide__time margin-slider sfr str" data-x="right" data-hoffset='-243'
+                            data-y="186" data-speed="300" data-start="2100" data-easing="easeOutBack"
+                            data-endspeed="300" data-end="8700" data-endeasing="Back.easeIn">
+                            From
+                        </div>
+                        <div class="caption slide__date margin-slider lfb ltb" data-x="right" data-hoffset='-149'
+                            data-y="186" data-speed="500" data-start="2400" data-easing="Power4.easeOut"
+                            data-endspeed="400" data-end="8200" data-endeasing="Back.easeIn">
+                            October 18
+                        </div>
+                        <div class="caption slide__time margin-slider sfr str" data-x="right" data-hoffset='-113'
+                            data-y="186" data-speed="300" data-start="2100" data-easing="easeOutBack"
+                            data-endspeed="300" data-end="8700" data-endeasing="Back.easeIn">
+                            - till
+                        </div>
+                        <div class="caption slide__date margin-slider lfb ltb" data-x="right" data-y="186"
+                            data-speed="500" data-start="2800" data-easing="Power4.easeOut" data-endspeed="400"
+                            data-end="8200" data-endeasing="Back.easeIn">
+                            November 01
+                        </div>
+                        <div class="caption slide__text margin-slider customin customout" data-x="right" data-y="250"
+                            data-customin="x:0;y:100;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:3;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                            data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                            data-speed="400" data-start="3000" data-endspeed="400" data-end="8000"
+                            data-endeasing="Back.easeIn">
+                            Two-time Academy Award winner Ron Howard, teams once again with fellow two-time Academy<br>
+                            Award nominee, writer Peter Morgan , on Rush, a spectacular big-screen re-creation of the
+                            merciless<br> 1970s rivalry between James Hunt and Niki Lauda.
+                        </div>
+                        <div class="caption margin-slider skewfromright customout " data-x="right" data-y="324"
+                            data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                            data-speed="400" data-start="3300" data-easing="Power4.easeOut" data-endspeed="300"
+                            data-end="7700" data-endeasing="Power4.easeOut">
+                            <a href="#" class="slide__link">check out cinemas &amp; time</a>
+                        </div>
                     </li>
+
+                    <li data-transition="fade" data-slotamount="7" class="slide fading-slide" data-slide='Travel worldwide.
+Create trip film.'>
+                        <img alt='' src="http://placehold.it/1920x616">
+                        <div class="caption slide__video" data-x="0" data-y="0" data-autoplay='true'>
+                            <video class="media-element" autoplay="autoplay" preload='none' loop="loop" muted=""
+                                src="video/53170154.mp4">
+                                <source type="video/webm" src="video/53170154.webm">
+                                <source type="video/mp4" src="video/53170154.mp4">
+                                <source type="video/ogg" src="video/53170154.ogv">
+                            </video>
+                        </div>
+
+                        <div class="caption slide__name slide__name--smaller" data-x="left" data-y="160"
+                            data-splitin="chars" data-elementdelay="0.1" data-speed="700" data-start="1400"
+                            data-easing="easeOutBack"
+                            data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:0;transformOrigin:50% 50%;"
+                            data-frames="{ typ :lines;
+                                                 elementdelay :0.1;
+                                                 start:1650;
+                                                 speed:500;
+                                                 ease:Power3.easeOut;
+                                                 animation:x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:1;transformPerspective:600;transformOrigin:50% 50%;
+                                                 },
+                                                 { typ :lines;
+                                                 elementdelay :0.1;
+                                                 start:2150;
+                                                 speed:500;
+                                                 ease:Power3.easeOut;
+                                                 animation:x:0;y:0;z:0;rotationX:00;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:1;transformPerspective:600;transformOrigin:50% 50%;
+                                                 }
+                                                 " data-splitout="lines" data-endelementdelay="0.1"
+                            data-customout="x:-230;y:0;z:0;rotationX:0;rotationY:0;rotationZ:90;scaleX:0.2;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%"
+                            data-endspeed="500" data-endeasing="Back.easeIn">
+                            Travel, Admire, Remember.
+                        </div>
+
+                        <div class="caption slide__time position-center postion-place--one sfr stl" data-x="left"
+                            data-y="242" data-speed="300" data-start="2100" data-easing="easeOutBack"
+                            data-endspeed="300" data-endeasing="Back.easeIn">
+                            From
+                        </div>
+                        <div class="caption slide__date position-center postion-place--two lfb ltb" data-x="left"
+                            data-y="242" data-speed="500" data-start="2400" data-easing="Power4.easeOut"
+                            data-endspeed="400" data-endeasing="Back.easeIn">
+                            April 18
+                        </div>
+                        <div class="caption slide__time position-center postion-place--three sfr stl" data-x="left"
+                            data-y="242" data-speed="300" data-start="2100" data-easing="easeOutBack"
+                            data-endspeed="300" data-endeasing="Back.easeIn">
+                            - till
+                        </div>
+                        <div class="caption slide__date position-center postion-place--four lfb ltb" data-x="left"
+                            data-y="242" data-speed="500" data-start="2800" data-easing="Power4.easeOut"
+                            data-endspeed="400" data-endeasing="Back.easeIn">
+                            May 01
+                        </div>
+
+                        <div class="caption lfb slider-wrap-btn ltb" data-x="left" data-y="310" data-speed="400"
+                            data-start="3300" data-easing="Power4.easeOut" data-endspeed="500"
+                            data-endeasing="Power4.easeOut">
+                            <a href="#" class="btn btn-md btn--danger btn--wide slider--btn">learn more</a>
+                        </div>
+                    </li>
+
+                    <li data-transition="fade" data-slotamount="7" class="slide" data-slide='Stop wishing. 
+Start doing.'>
+                        <img alt='' src="http://placehold.it/1920x616">
+                        <div class="caption slide__name slide__name--smaller slide__name--specific customin customout"
+                            data-x="left" data-y="160"
+                            data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+                            data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                            data-speed="700" data-start="1400" data-easing="easeOutBack" data-endspeed="500"
+                            data-end="8600" data-endeasing="Back.easeIn">
+                            Stop <span class="highlight">wishing.</span> Start <span class="highlight">doing.</span>
+                        </div>
+
+                        <div class="caption slide__descript customin customout" data-x="left" data-y="240"
+                            data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+                            data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                            data-speed="700" data-start="2000" data-endspeed="500" data-end="8400"
+                            data-endeasing="Back.easeIn">
+                            find your best match movie with A.MOVIE
+                        </div>
+
+                        <div class="caption lfb customout slider-wrap-btn" data-x="left" data-y="310" data-speed="500"
+                            data-start="2800" data-easing="Power4.easeOut"
+                            data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                            data-endspeed="400" data-end="8000" data-endeasing="Power4.easeOut">
+                            <a href="#" class="btn btn-md btn--danger slider--btn">check out movies</a>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -138,8 +426,8 @@
             <div class="movie-best">
                 <div class="col-sm-10 col-sm-offset-1 movie-best__rating">Today Best choice</div>
                 <div class="col-sm-12 change--col">
-                    <div class="movie-beta__item " style="background:url(/client/images/bg-body.jpg)">
-                        <img alt='' src="http://localhost:3000/client/images/movies/dat_rung_phuong_nam.jpg">
+                    <div class="movie-beta__item ">
+                        <img alt='' src="http://placehold.it/380x600">
                         <span class="best-rate">5.0</span>
 
                         <ul class="movie-beta__info">
@@ -155,7 +443,7 @@
                         </ul>
                     </div>
                     <div class="movie-beta__item second--item">
-                        <img alt='' src="http://localhost:3000/client/images/movies/quy_am_tin_do.jpg">
+                        <img alt='' src="http://placehold.it/380x600">
                         <span class="best-rate">5.0</span>
 
                         <ul class="movie-beta__info">
@@ -171,8 +459,7 @@
                         </ul>
                     </div>
                     <div class="movie-beta__item third--item">
-                        <img alt=''
-                            src="https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002798?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500">
+                        <img alt='' src="http://placehold.it/380x600">
                         <span class="best-rate">5.0</span>
 
                         <ul class="movie-beta__info">
@@ -188,8 +475,7 @@
                         </ul>
                     </div>
                     <div class="movie-beta__item hidden-xs">
-                        <img alt=''
-                            src="https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002835?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500">
+                        <img alt='' src="http://placehold.it/380x600">
                         <span class="best-rate">5.0</span>
 
                         <ul class="movie-beta__info">
@@ -205,8 +491,7 @@
                         </ul>
                     </div>
                     <div class="movie-beta__item hidden-xs hidden-sm">
-                        <img alt=''
-                            src="https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002841?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500">
+                        <img alt='' src="http://placehold.it/380x600">
                         <span class="best-rate">5.0</span>
 
                         <ul class="movie-beta__info">
@@ -222,8 +507,7 @@
                         </ul>
                     </div>
                     <div class="movie-beta__item hidden-xs hidden-sm">
-                        <img alt=''
-                            src="https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002804?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500">
+                        <img alt='' src="http://placehold.it/380x600">
                         <span class="best-rate">5.0</span>
 
                         <ul class="movie-beta__info">
@@ -246,11 +530,11 @@
                 <div class="mega-select-present mega-select-top mega-select--full">
                     <div class="mega-select-marker">
                         <div class="marker-indecator location">
-                            <p class="select-marker"><span>Movie to watch now</span> <br>in your city</p>
+                            <p class="select-marker"><span>movie to watch now</span> <br>in your city</p>
                         </div>
 
                         <div class="marker-indecator cinema">
-                            <p class="select-marker"><span>find by </span> <br></p>
+                            <p class="select-marker"><span>find your </span> <br>cinema</p>
                         </div>
 
                         <div class="marker-indecator film-category">
@@ -271,16 +555,37 @@
                     </div>
 
                     <div class="mega-select pull-right">
+                        <span class="mega-select__point">Search by</span>
                         <ul class="mega-select__sort">
                             <li class="filter-wrap"><a href="#" class="mega-select__filter filter--active"
-                                    data-filter='location'></a></li>
+                                    data-filter='location'>Location</a></li>
+                            <li class="filter-wrap"><a href="#" class="mega-select__filter"
+                                    data-filter='cinema'>Cinema</a></li>
+                            <li class="filter-wrap"><a href="#" class="mega-select__filter"
+                                    data-filter='film-category'>Category</a></li>
+                            <li class="filter-wrap"><a href="#" class="mega-select__filter"
+                                    data-filter='actors'>Actors</a></li>
+                            <li class="filter-wrap"><a href="#" class="mega-select__filter"
+                                    data-filter='director'>Director</a></li>
+                            <li class="filter-wrap"><a href="#" class="mega-select__filter"
+                                    data-filter='country'>Country</a></li>
                         </ul>
 
-                        <input name="search-input" id="search-input" type='text' class="select__field">
+                        <input name="search-input" type='text' class="select__field">
 
                         <div class="select__btn">
-                            <span class="btn btn-md btn--danger" id="search-btn">Find <span class="hidden-exrtasm">movie
-                                    now</span></span>
+                            <a href="#" class="btn btn-md btn--danger location">find <span class="hidden-exrtasm">your
+                                    city</span></a>
+                            <a href="#" class="btn btn-md btn--danger cinema">find <span class="hidden-exrtasm">suitable
+                                    cimema</span></a>
+                            <a href="#" class="btn btn-md btn--danger film-category">find <span
+                                    class="hidden-exrtasm">best category</span></a>
+                            <a href="#" class="btn btn-md btn--danger actors">find <span class="hidden-exrtasm">talented
+                                    actors</span></a>
+                            <a href="#" class="btn btn-md btn--danger director">find <span
+                                    class="hidden-exrtasm">favorite director</span></a>
+                            <a href="#" class="btn btn-md btn--danger country">find <span
+                                    class="hidden-exrtasm">produced country</span></a>
                         </div>
 
                         <div class="select__dropdowns">
@@ -576,18 +881,15 @@
                     <aside class="col-sm-4 col-md-3">
                         <div class="sitebar first-banner--left">
                             <div class="banner-wrap first-banner--left">
-                                <img alt='banner'
-                                    src="https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002811?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500">
+                                <img alt='banner' src="http://placehold.it/500x500">
                             </div>
 
                             <div class="banner-wrap">
-                                <img alt='banner'
-                                    src="https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002842?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500">
+                                <img alt='banner' src="http://placehold.it/500x500">
                             </div>
 
                             <div class="banner-wrap banner-wrap--last">
-                                <img alt='banner'
-                                    src="https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002813?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500">
+                                <img alt='banner' src="http://placehold.it/500x500">
                             </div>
 
                             <div class="promo marginb-sm">
@@ -616,8 +918,8 @@
                 <div class="col-sm-4 similar-wrap col--remove">
                     <div class="post post--preview post--preview--wide">
                         <div class="post__image">
-                            <img alt='' src="https://www.bhdstar.vn/wp-content/uploads/2018/03/Suat-Khuya-Web.jpg">
-                            <div class=" social social--position social--hide">
+                            <img alt='' src="http://placehold.it/270x330">
+                            <div class="social social--position social--hide">
                                 <span class="social__name">Share:</span>
                                 <a href='#' class="social__variant social--first fa fa-facebook"></a>
                                 <a href='#' class="social__variant social--second fa fa-twitter"></a>
@@ -632,7 +934,7 @@
                 <div class="col-sm-4 similar-wrap col--remove">
                     <div class="post post--preview post--preview--wide">
                         <div class="post__image">
-                            <img alt='' src="https://www.bhdstar.vn/wp-content/uploads/2018/03/Web-HappyDay.png">
+                            <img alt='' src="http://placehold.it/270x330">
                             <div class="social social--position social--hide">
                                 <span class="social__name">Share:</span>
                                 <a href='#' class="social__variant social--first fa fa-facebook"></a>
@@ -649,7 +951,7 @@
                 <div class="col-sm-4 similar-wrap col--remove">
                     <div class="post post--preview post--preview--wide">
                         <div class="post__image">
-                            <img alt='' src="https://www.bhdstar.vn/wp-content/uploads/2023/11/1920X1080.jpg">
+                            <img alt='' src="http://placehold.it/270x330">
                             <div class="social social--position social--hide">
                                 <span class="social__name">Share:</span>
                                 <a href='#' class="social__variant social--first fa fa-facebook"></a>

@@ -15,6 +15,7 @@ $controllerMappings = array(
     'movies' => 'MoviesController',
     'users' => 'UsersController',
     'chairs' => 'ChairsController',
+    'chairtypes' => 'ChairTypeController',
     'formats' => 'FormatsController',
     'labels' => 'LabelsController',
     'genres' => 'GenresController',

@@ -49,7 +49,6 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a href="index.html" class="app-brand-link">
@@ -110,8 +109,8 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item active">
-                        <a href="index.html" class="menu-link">
+                    <li class="menu-item">
+                        <a href="index.php" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
@@ -129,29 +128,29 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a class="menu-link nav" id="nav-phim" href="?action=getMovie">
                                     <div data-i18n="Account">Quản lý Phim</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-dinhdang">
                                     <div data-i18n="Notifications">Quản lý Định dạng</div>
-                                </a>
+                                </span>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-theloai">
                                     <div data-i18n="Connections">Quản lý Thể loại</div>
-                                </a>
+                                </span>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-quocgia">
                                     <div data-i18n="Notifications">Quản lý Quốc gia</div>
-                                </a>
+                                </span>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <span class="menu-link nav" id="nav-nhan">
                                     <div data-i18n="Connections">Quản lý Nhãn</div>
-                                </a>
+                                </span>
                             </li>
                         </ul>
                     </li>
@@ -246,54 +245,6 @@
                         </ul>
                     </li>
 
-
-                    <!-- Forms & Tables -->
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp;
-                            Tables</span></li>
-                    <!-- Forms -->
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-detail"></i>
-                            <div data-i18n="Form Elements">Form Elements</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="forms-basic-inputs.html" class="menu-link">
-                                    <div data-i18n="Basic Inputs">Basic Inputs</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="forms-input-groups.html" class="menu-link">
-                                    <div data-i18n="Input groups">Input groups</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-detail"></i>
-                            <div data-i18n="Form Layouts">Form Layouts</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="form-layouts-vertical.html" class="menu-link">
-                                    <div data-i18n="Vertical Form">Vertical Form</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="form-layouts-horizontal.html" class="menu-link">
-                                    <div data-i18n="Horizontal Form">Horizontal Form</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Tables -->
-                    <li class="menu-item">
-                        <a href="tables-basic.html" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-table"></i>
-                            <div data-i18n="Tables">Tables</div>
-                        </a>
-                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -390,126 +341,45 @@
                     </div>
                 </nav>
 
-                <!-- / Navbar -->
-
-                <hr class="my-5" />
-                <div id="contentBox">
-                    <!-- Bordered Table -->
-                    <div class="card">
-                        <h5 class="card-header">Bordered Table</h5>
-                        <div class="card-body">
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Project</th>
-                                            <th>Client</th>
-                                            <th>Users</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Angular Project</strong>
-                                            </td>
-                                            <td>Albert Cook</td>
-                                            <td></td>
-                                            <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="bx bx-trash me-1"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ Bordered Table -->
-                </div>
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    <div id="content">
-
-                    </div>
-                    <!-- / Content -->
-
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div
-                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                document.write(new Date().getFullYear());
-                                </script>
-                                , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank"
-                                    class="footer-link fw-bolder">ThemeSelection</a>
-                            </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4"
-                                    target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                                    Themes</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank" class="footer-link me-4">Support</a>
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        </h4>
+                        <!-- Hoverable Table rows -->
+                        <div class="card">
+                            <div class="table-responsive text-nowrap">
+                                <?php
+                                    include("menu.php");
+                                ?>
                             </div>
                         </div>
-                    </footer>
-                    <!-- / Footer -->
+                    </div>
+                    <!-- Content -->
 
-                    <div class="content-backdrop fade"></div>
-                </div>
-                <!-- Content wrapper -->
-            </div>
-            <!-- / Layout page -->
-        </div>
+                    <!-- Core JS -->
+                    <!-- build:js assets/vendor/js/core.js -->
+                    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+                    <script src="../assets/vendor/libs/popper/popper.js"></script>
+                    <script src="../assets/vendor/js/bootstrap.js"></script>
+                    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
-    <!-- / Layout wrapper -->
+                    <script src="../assets/vendor/js/menu.js"></script>
+                    <!-- endbuild -->
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+                    <!-- Vendors JS -->
+                    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-    <script src="../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
+                    <!-- Main JS -->
+                    <script src="../assets/js/main.js"></script>
 
-    <!-- Vendors JS -->
-    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+                    <!-- Page JS -->
+                    <script src="../assets/js/dashboards-analytics.js"></script>
 
-    <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
+                    <!-- Place this tag in your head or just before your close body tag. -->
+                    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-    <!-- Page JS -->
-    <script src="../assets/js/dashboards-analytics.js"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+                    <script src="../assets/js/pages/movies.js"></script>
 </body>
 
 </html>

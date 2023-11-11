@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
-    <title>AMovie - Login</title>
+    <title>AMovie - Đăng ký</title>
     <meta name="description" content="A Template by Gozha.net">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Gozha.net">
@@ -34,8 +34,8 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]> 
-    	<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>		
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>		
     <![endif]-->
 </head>
 
@@ -192,7 +192,7 @@
 
                 <!-- Additional header buttons / Auth and direct link to booking-->
                 <div class="control-panel">
-                    <a href="#" class="btn btn--sign">Sign in</a>
+                    <!-- <a href="#" class="btn btn--sign">Sign in</a> -->
                     <a href="#" class="btn btn-md btn--warning btn--book">Book a ticket</a>
                 </div>
 
@@ -200,7 +200,7 @@
         </header>
 
         <!-- Search bar -->
-        <div class="search-wrapper">
+        <!-- <div class="search-wrapper">
             <div class="container container--add">
                 <form id='search-form' method='get' class="search">
                     <input type="text" class="search__field" placeholder="Search">
@@ -214,30 +214,40 @@
                     <button type='submit' class="btn btn-md btn--danger search__button">search a movie</button>
                 </form>
             </div>
-        </div>
+        </div> -->
 
         <!-- Main content -->
         <form id="login-form" class="login" method='get' novalidate=''>
-            <p class="login__title">sign in <br><span class="login-edition">welcome to A.Movie</span></p>
+            <p class="login__title">Đăng ký <br><span class="login-edition">welcome to A.Movie</span></p>
 
-            <div class="social social--colored">
-                <a href='#' class="social__variant fa fa-facebook"></a>
-                <a href='#' class="social__variant fa fa-twitter"></a>
-                <a href='#' class="social__variant fa fa-tumblr"></a>
-            </div>
+            <!-- <div class="social social--colored">
+                            <a href='#' class="social__variant fa fa-facebook"></a>
+                            <a href='#' class="social__variant fa fa-twitter"></a>
+                            <a href='#' class="social__variant fa fa-tumblr"></a>
+                    </div>
 
-            <p class="login__tracker">or</p>
+                    <p class="login__tracker">or</p> -->
 
             <div class="field-wrap">
+                <input type='text' placeholder='Họ tên' name='user-fullname' class="login__input">
                 <input type='email' placeholder='Email' name='user-email' class="login__input">
                 <input type='password' placeholder='Password' name='user-password' class="login__input">
+                <input type='phone' placeholder='SĐT' name='user-phone' class="login__input">
+                <label class='login__input'>Ngày sinh:</label>
+                <input type='date' placeholder='Ngày sinh' name='user-birth' class="login__input">
+                <select name="gender" name="user-gender" class="login__input">
+                    <option value="">Chọn giới tính</option>
+                    <option value="male">Nam</option>
+                    <option value="female">Nữ</option>
+                    <option value="other">Khác</option>
+                </select>
 
                 <input type='checkbox' id='#informed' class='login__check styled'>
-                <label for='#informed' class='login__check-info'>remember me</label>
+                <label for='#informed' class='login__check-info'>Đồng ý với điều khoản</label>
             </div>
 
             <div class="login__control">
-                <button type='submit' class="btn btn-md btn--warning btn--wider" id="btn-signin">sign in</button>
+                <button type='submit' class="btn btn-md btn--warning btn--wider">Đăng ký</button>
                 <a href="#" class="login__tracker form__tracker">Forgot password?</a>
             </div>
         </form>
@@ -313,12 +323,7 @@
     <!-- Custom -->
     <script src="js/custom.js"></script>
 
-    <script>
-        $("#btn-signin").click(function () {
-            localStorage.setItem("email", $("input[name='user-emai']").text());
-            window.history.back();
-        })
-    </script>
+
 </body>
 
 </html>
