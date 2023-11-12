@@ -663,33 +663,36 @@
             </section>
         </div>
 
-	<!-- JavaScript-->
-        <!-- jQuery 1.9.1--> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/external/jquery-1.10.1.min.js"><\/script>')</script>
-        <!-- Migrate --> 
-        <script src="js/external/jquery-migrate-1.2.1.min.js"></script>
-        <!-- Bootstrap 3--> 
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+	
 
-        <!-- Mobile menu -->
-        <script src="js/jquery.mobile.menu.js"></script>
-         <!-- Select -->
-        <script src="js/external/jquery.selectbox-0.2.min.js"></script>
-
-        <!-- Form element -->
-        <script src="js/external/form-element.js"></script>
-        <!-- Form validation -->
-        <script src="js/form.js"></script>
-
-        <!-- Custom -->
-        <script src="js/custom.js"></script>
-		
-		<script type="text/javascript">
-            $(document).ready(function() {
-                init_BookingTwo();
-            });
-		</script>
-
+        <script>// Gọi API để lấy thông tin phim và khung giờ đã chọn
+            function getSelectedMovieAndTime() {
+                var maPhim = '0faa8a88-7280-11ee-bb96-8cc84bf40472'; // Thay thế 'your_movie_id' bằng mã phim đã chọn từ trang trước
+                var maKTG = 'cac8aee5-7281-11ee-bb96-8cc84bf40472'; // Thay thế 'your_time_id' bằng mã khung giờ đã chọn từ trang trước
+            
+                // Gửi yêu cầu Ajax đến API endpoint
+                axios.get('/api/get-chairs', {
+                    params: {
+                        maPhim: maPhim,
+                        maKTG: maKTG
+                    }
+                })
+                .then(function(response) {
+                    // Xử lý kết quả trả về từ API
+                    var chairsData = response.data.data;
+                    console.log(chairsData); // In dữ liệu ghế ra console để kiểm tra
+            
+                    // Tiếp tục xử lý dữ liệu ghế trên trang web
+                    // ...
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            }
+            
+            // Gọi hàm để lấy thông tin phim và khung giờ đã chọn khi trang web được tải
+            getSelectedMovieAndTime();
+            
+            </script>
 </body>
 </html>
