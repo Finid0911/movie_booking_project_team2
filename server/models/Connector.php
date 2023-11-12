@@ -12,7 +12,7 @@ class Connector
 
     private function __construct()
     {
-        $this->connection = new mysqli($this->servername, $this->user, $this->pass, $this->dbname);
+        $this->connection = new mysqli($this->servername, $this->user, $this->pass, $this->dbname, $this->port);
 
         // Check connection
         if ($this->connection->connect_error) {
