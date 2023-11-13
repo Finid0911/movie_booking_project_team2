@@ -1,29 +1,11 @@
 
 <?php 
-    session_start();
-    // Nếu đã đăng nhập rồi thì chuyển về index
-    if ( isset($_SESSION['user_email']) )
-        {
-            header('location:index.php');
-        }
-
-    // if ( isset($_POST['login']) )   // Nếu người dùng nhấn vào nút Login
-    // {
-    //     // Lấy email và password đã nhập
-    //     $user_email = $_POST['user_email'];
-    //     $user_password = $_POST['user_password'];
-
-    //     if($user_email == 'user@gmail.com' && $user_password == '123456')
+    // session_start();
+    // // Nếu đã đăng nhập rồi thì chuyển về index
+    // if ( isset($_SESSION['user_email']) )
     //     {
-    //         $_SESSION['user_email'] = $user_email;
     //         header('location:index.php');
     //     }
-    //     else 
-    //     {
-    //         echo '<p class="error-message">Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu.</p>';
-    //     }
-        
-    // }
 
     function authenticateLogin($user_email, $user_password) {
         // Thực hiện kết nối CSDL
@@ -44,13 +26,15 @@
         $stmt->bind_param("ss", $user_email, $user_password);
         $stmt->execute();
         $result = $stmt->get_result();
-
-        $hoTen ='';
-    
         if ($result->num_rows == 1) {
-            $_SESSION['user_email'] = $user_email;
+            //$_SESSION['user_email'] = $user_email;
            
-            header('Location: index.php');
+            //header('Location: index.php');
+
+            $userFullname = getUserFullname($user_email);
+
+            setcookie("userFullname", $userFullname, time() + 3600, "/");
+            header('Location: index.html');
             exit();
         } else {
             echo '<p class="error-message">Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu.</p>';
@@ -58,6 +42,36 @@
     
         $stmt->close();
         $conn->close();
+    }
+
+    function getUserFullname($user_email){
+        // Thực hiện kết nối CSDL
+        $servername = 'localhost';
+        $username = 'root';
+        $password = '';
+        $dbname = 'qlyrap';
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Lỗi kết nối CSDL: " . $conn->connect_error);
+        }
+        $stmt = $conn->prepare("SELECT HoTen FROM thanh_vien WHERE Email = ?");
+        $stmt->bind_param("s", $user_email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        // Kiểm tra xem có bất kỳ dòng dữ liệu nào không
+        if ($result->num_rows > 0) {
+            // Lấy giá trị cột đầu tiên của dòng đầu tiên
+            $firstRow = $result->fetch_assoc();
+            $firstColumnValue = (string) $firstRow[array_keys($firstRow)[0]];
+
+        } else {
+            // Trường hợp không có dòng dữ liệu
+            echo "Không có dữ liệu.";
+        }
+        return $firstColumnValue;
     }
     
     if (isset($_POST['login'])) {
@@ -68,6 +82,8 @@
     }
 
 ?>
+
+
 <!doctype html>
 <html>
 <head>
@@ -116,6 +132,7 @@
     border-radius: 5px;
 }
 </style>
+
 </head>
 
 <body>
@@ -298,16 +315,16 @@
                     <p class="login__tracker">or</p> -->
                     
                     <div class="field-wrap">
-                    <input type='email' placeholder='Email' name='user_email' class="login__input">
-                    <input type='password' placeholder='Password' name='user_password' class="login__input">
+                    <input type='email' placeholder='Email' id='user_email' name='user_email' class="login__input">
+                    <input type='password' placeholder='Password' id='user_password' name='user_password' class="login__input">
 
                     <input type='checkbox' id='#informed' class='login__check styled'>
                     <label for='#informed' class='login__check-info'>remember me</label>
                      </div>
                     
                     <div class="login__control">
-                        <button type='submit' name="login" class="btn btn-md btn--warning btn--wider">sign in</button>
-                        <a href="#" class="login__tracker form__tracker">Forgot password?</a>
+                        <button type='submit' id='submitButton' name="login" class="btn btn-md btn--warning btn--wider">sign in</button>
+                        <a href="signup.php" class="login__tracker form__tracker">Chưa có tài khoản?</a>
                     </div>
 
                     </form>
