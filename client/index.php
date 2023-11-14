@@ -213,8 +213,9 @@ session_start();
                         $username = 'root';
                         $password = '';
                         $dbname = 'qlyrap';
+                        $port = "3390";
 
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        $conn = new mysqli($servername, $username, $password, $dbname, $port);
 
                         // Kiểm tra kết nối
                         if ($conn->connect_error) {
