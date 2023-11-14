@@ -18,11 +18,7 @@ $controllerMappings = array(
     'formats' => 'FormatsController',
     'labels' => 'LabelsController',
     'genres' => 'GenresController',
-<<<<<<< HEAD
     'nations' => 'NationsController',   
-=======
-    'nations' => 'NationsController',
->>>>>>> 241e9622d881e4c354f5223ffb346c77fee47446
     'employees' => 'EmployeesController',
     'roles' => 'RolesController',
     'gia' => 'GiaController',

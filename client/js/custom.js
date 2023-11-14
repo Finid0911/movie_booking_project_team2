@@ -610,15 +610,22 @@ function init_BookingTwo() {
   var cheap = 0;
   var middle = 0;
   var expansive = 0;
-
-  $(".sits__place").click(function (e) {
+  var selectedPlaces = [];
+  $(".sits").click(function (e) {
     e.preventDefault();
-    var place = $(this).attr("data-place");
-    var ticketPrice = $(this).attr("data-price");
+    e.stopPropagation();
+    var ele = $(e.target); 
+    var clickedClass = $(ele).attr("class");
+    if (clickedClass.includes("sits__place")) {
+    var place = ele.attr("data-maghe");
+    var ticketPrice = ele.attr("data-price");
 
-    if (!$(e.target).hasClass("sits-state--your")) {
-      if (!$(this).hasClass("sits-state--not")) {
-        $(this).addClass("sits-state--your");
+    if (!ele.hasClass("sits-state--your")) {
+      if (!ele.hasClass("sits-state--not")) {
+        ele.addClass("sits-state--your");
+
+        selectedPlaces.push(place);
+        localStorage.setItem('selectedPlaces', JSON.stringify(selectedPlaces));
 
         $(".checked-place").prepend(
           '<span class="choosen-place ' + place + '">' + place + "</span>"
@@ -640,11 +647,22 @@ function init_BookingTwo() {
         }
 
         $(".checked-result").text("$" + sum);
+        localStorage.setItem('sumMoney', JSON.stringify(sum));
       }
     } else {
-      $(this).removeClass("sits-state--your");
+      ele.removeClass("sits-state--your");
 
       $("." + place + "").remove();
+      var placeToRemove = ele.attr("data-maghe");
+
+      // Tìm vị trí của phần tử trong mảng
+      var index = selectedPlaces.indexOf(placeToRemove);
+      // Nếu phần tử được tìm thấy trong mảng, loại bỏ nó bằng cách sử dụng phương thức splice()
+      if (index > -1) {
+        selectedPlaces.splice(index, 1);
+      }
+      console.log(selectedPlaces);
+      localStorage.setItem('selectedPlaces', JSON.stringify(selectedPlaces));
 
       switch (ticketPrice) {
         case "10":
@@ -662,6 +680,8 @@ function init_BookingTwo() {
       }
 
       $(".checked-result").text("$" + sum);
+      localStorage.setItem('sumMoney', JSON.stringify(sum));
+    }
     }
 
     //data element init

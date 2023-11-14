@@ -54,7 +54,8 @@ class ChairTypeController extends BaseController
      LEFT JOIN ghe ON phong.MaPhong = ghe.MaPhong 
      LEFT JOIN trang_thai ON ghe.MaTT = trang_thai.MaTT
       LEFT JOIN so_ghe ON ghe.SoGhe = so_ghe.SoGhe 
-      where phim.MaPhim = '$phimID' and ktg.MaKTG = '$timeID';
+      where phim.MaPhim = '$phimID' and ktg.MaKTG = '$timeID'
+      order by so_ghe.SoHang, CAST(so_ghe.SoCot AS UNSIGNED);
     ";
     $result = $this->connection->query($sql);
     $data = array();
