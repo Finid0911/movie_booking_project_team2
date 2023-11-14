@@ -82,6 +82,8 @@
             top: 7px !important;
         }
     </style>
+
+
 </head>
 
 <body>
@@ -98,17 +100,10 @@
 
                 <!-- Additional header buttons / Auth and direct link to booking-->
                 <div class="control-panel header-user">
-                    <div class="auth auth--home">
+                    <div class="auth auth--home" id="username">
 
-                        <a href="#" class="btn btn--sign btn--singin">
-                            me
-                        </a>
-                        <ul class="auth__function">
-                            <li><a href="#" class="auth__function-item">Watchlist</a></li>
-                            <li><a href="#" class="auth__function-item">Booked tickets</a></li>
-                            <li><a href="#" class="auth__function-item">Discussion</a></li>
-                            <li><a href="#" class="auth__function-item">Settings</a></li>
-                        </ul>
+                        <!-- thay vào đây -->
+
 
                     </div>
                     <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">Book a
@@ -789,7 +784,42 @@
             init_Home();
         });
     </script>
+    <script>
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (const cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.split('=');
+                if (cookieName === name) {
+                    return cookieValue;
+                }
+            }
+            return null;
+        }
 
+        // Kiểm tra xem có cookie 'user_email' hay không
+        const savedUserEmail = decodeURIComponent(getCookie('userFullname'));
+
+        const mainContentDiv = document.getElementById("username");
+
+        if (savedUserEmail == "null") {
+            // Người dùng chưa đăng nhập
+            console.log('Vui lòng đăng nhập.');
+            mainContentDiv.innerHTML = `<a href="#" class="btn btn--sign btn--singin">Đăng ký / Đăng nhập</a>
+                                        <ul class="auth__function">
+                                            <li><a href="signup.php" class="auth__function-item">Đăng ký</a></li>
+                                            <li><a href="login.php" class="auth__function-item">Đăng nhập</a></li>
+                                        </ul>`;
+        } else {
+            // Người dùng đã đăng nhập
+            console.log(`Xin chào, ${savedUserEmail}!`);
+            mainContentDiv.innerHTML = `<a href="#" class="btn btn--sign btn--singin"> ${savedUserEmail} </a>
+                                        <ul class="auth__function">
+                                            <li><a href="logout.php" class="auth__function-item">Đăng xuất</a></li>
+                                        </ul>`;
+
+        }
+
+    </script>
 </body>
 
 </html>

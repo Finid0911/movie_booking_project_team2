@@ -1,27 +1,10 @@
 <?php
-session_start();
-// Nếu đã đăng nhập rồi thì chuyển về index
-if (isset($_SESSION['user_email'])) {
-    header('location:index.php');
-}
-
-// if ( isset($_POST['login']) )   // Nếu người dùng nhấn vào nút Login
-// {
-//     // Lấy email và password đã nhập
-//     $user_email = $_POST['user_email'];
-//     $user_password = $_POST['user_password'];
-
-//     if($user_email == 'user@gmail.com' && $user_password == '123456')
+// session_start();
+// // Nếu đã đăng nhập rồi thì chuyển về index
+// if ( isset($_SESSION['user_email']) )
 //     {
-//         $_SESSION['user_email'] = $user_email;
 //         header('location:index.php');
 //     }
-//     else 
-//     {
-//         echo '<p class="error-message">Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu.</p>';
-//     }
-
-// }
 
 function authenticateLogin($user_email, $user_password)
 {
@@ -30,9 +13,8 @@ function authenticateLogin($user_email, $user_password)
     $username = 'root';
     $password = '';
     $dbname = 'qlyrap';
-    $port = "3390";
 
-    $conn = new mysqli($servername, $username, $password, $dbname, $port = "3390");
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Kiểm tra kết nối
     if ($conn->connect_error) {
@@ -68,6 +50,8 @@ if (isset($_POST['login'])) {
 }
 
 ?>
+
+
 <!doctype html>
 <html>
 
