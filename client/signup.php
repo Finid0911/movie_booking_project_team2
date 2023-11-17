@@ -36,23 +36,27 @@
         }
         // Kiểm tra dữ liệu đầu vào
 
-        // Kiểm tra tên đầy đủ
+        // echo $fullname;
+        //Kiểm tra tên đầy đủ
         if (empty($fullname)) {
             $errors[] = "Tên đầy đủ không được để trống.";
-        } elseif (!preg_match("/^[a-zA-Z ]+$/", $fullname)) {
+        } elseif (!preg_match('/^\pL[\pL\s]+$/u', $fullname)) {
             $errors[] = "Tên đầy đủ chỉ được chứa chữ cái và dấu cách.";
         }
 
+        // echo $email;
         // Kiểm tra định dạng email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = "Email không hợp lệ.";
         }
 
+        // echo $password;
         // Kiểm tra độ dài mật khẩu
         if (strlen($password) < 6) {
             $errors[] = "Mật khẩu phải có ít nhất 6 ký tự.";
         }
 
+        // echo $phone;
         // Kiểm tra định dạng số điện thoại
         if (!preg_match("/^[0-9]{10}$/", $phone)) {
             $errors[] = "Số điện thoại không hợp lệ.";
@@ -63,8 +67,9 @@
             $errors[] = "Ngày sinh không hợp lệ.";
         }
 
+        // echo $gender;
         // Kiểm tra giới tính
-        if ($gender !== 'male' && $gender !== 'female' && $gender !== 'other') {
+        if ($gender !== 'Nam' && $gender !== 'Nữ' && $gender !== 'Khác') {
             $errors[] = "Giới tính không hợp lệ.";
         }
 
