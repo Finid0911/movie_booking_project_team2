@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["user_id"])) {
+        header("Location: http://localhost/movie_booking_project_team2/server/views/login.php");
+        exit();
+    }
+    $user_id = $_SESSION['user_id'];
+    $username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
     data-template="vertical-menu-template-free">
@@ -7,7 +17,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Dashboard - Admin</title>
 
     <meta name="description" content="" />
 
@@ -42,6 +52,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
+
 </head>
 
 <body>
@@ -51,7 +62,7 @@
             <!-- Menu -->
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="index.php" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -112,7 +123,7 @@
                     <li class="menu-item">
                         <a href="index.php" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Analytics">Dashboard</div>
+                            <div data-i18n="Analytics">Thống kê</div>
                         </a>
                     </li>
 
@@ -133,24 +144,25 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-dinhdang">
-                                    <div data-i18n="Notifications">Quản lý Định dạng</div>
-                                </span>
+                                <a class="menu-link nav" id="nav-dinhdang" href="?action=getFormat">
+                                    <div data-i18n=" Notifications">Quản lý Định dạng
+                                    </div>
+                                </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-theloai">
+                                <a class="menu-link nav" id="nav-theloai" href="?action=getType">
                                     <div data-i18n="Connections">Quản lý Thể loại</div>
-                                </span>
+                                </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-quocgia">
+                                <a class="menu-link nav" id="nav-quocgia" href="?action=getNation">
                                     <div data-i18n="Notifications">Quản lý Quốc gia</div>
-                                </span>
+                                </a>
                             </li>
                             <li class="menu-item">
-                                <span class="menu-link nav" id="nav-nhan">
+                                <a class="menu-link nav" id="nav-nhan" href="?action=getLabel">
                                     <div data-i18n="Connections">Quản lý Nhãn</div>
-                                </span>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -163,27 +175,22 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a href="?action=getRoom" class="menu-link">
                                     <div data-i18n="Account">Quản lý Phòng</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a href="?action=getChair" class="menu-link">
                                     <div data-i18n="Notifications">Quản lý Ghế</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
-                                    <div data-i18n="Connections">Quản lý Trạng thái</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a href="?action=getChairType" class="menu-link">
                                     <div data-i18n="Connections">Quản lý Loại ghế</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a href="?action=getChairNum" class="menu-link">
                                     <div data-i18n="Notifications">Quản lý Số ghế</div>
                                 </a>
                             </li>
@@ -198,8 +205,15 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a href="?action=getKtg" class="menu-link">
                                     <div data-i18n="Account">Quản lý Khung thời gian</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="?action=getCalendar" class="menu-link">
+                                    <div data-i18n="Account">Quản lý Lịch chiếu</div>
                                 </a>
                             </li>
                         </ul>
@@ -213,7 +227,7 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a href="?action=getTicket" class="menu-link">
                                     <div data-i18n="Account">Quản lý Vé</div>
                                 </a>
                             </li>
@@ -266,7 +280,7 @@
                         <div class="navbar-nav align-items-center">
                             <div class="nav-item d-flex align-items-center">
                                 <i class="bx bx-search fs-4 lh-0"></i>
-                                <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
+                                <input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..."
                                     aria-label="Search..." />
                             </div>
                         </div>
@@ -279,23 +293,24 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt
+                                        <img src="../assets/img/icons/user.png" alt
                                             class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
+
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="../assets/img/avatars/1.png" alt
+                                                        <img src="../assets/img/icons/user.png" alt
                                                             class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-semibold d-block"> <?php echo $username ?> </span>
+                                                    <small class="text-muted"> <?php echo $user_id ?> </small>
                                                 </div>
                                             </div>
                                         </a>
@@ -316,20 +331,10 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="d-flex align-items-center align-middle">
-                                                <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                                <span class="flex-grow-1 align-middle">Billing</span>
-                                                <span
-                                                    class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
+                                        <a class="dropdown-item" href="logout.php">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
@@ -380,6 +385,9 @@
                     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
                     <script src="../assets/js/pages/movies.js"></script>
+
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 
 </html>
