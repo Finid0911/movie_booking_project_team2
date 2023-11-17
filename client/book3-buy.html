@@ -109,14 +109,16 @@
                 <div class="order-step third--step">3. Check out</div>
             </div>
 
+            <div class="col-sm-12" id="movie_phong">
+                
+            </div>
             <div class="col-sm-12">
                 <div class="checkout-wrapper">
                     <h2 class="page-heading">price</h2>
                     <ul class="book-result">
                         <li class="book-result__item">Tickets: <span class="book-result__count booking-ticket">3</span>
                         </li>
-                        <li class="book-result__item">One item price: <span
-                                class="book-result__count booking-price">$20</span></li>
+                        
                         <li class="book-result__item">Total: <span class="book-result__count booking-cost">$60</span>
                         </li>
                     </ul>
@@ -161,7 +163,7 @@
                 </div>
 
                 <div class="order">
-                    <a href="book-final.html" class="btn btn-md btn--warning btn--wide">purchase</a>
+                    <a href="book-final.html" class="btn btn-md btn--warning btn--wide" onclick="">purchase</a>
                 </div>
 
             </div>
@@ -289,6 +291,54 @@
 
     <!-- Custom -->
     <script src="js/custom.js"></script>
+    <script>
+        // Lấy giá trị từ local storage
+        var selectedPlaces = JSON.parse(localStorage.getItem('selectedPlaces'));
+        var sumMoney = localStorage.getItem('sumMoney');
+      
+        // Xây dựng chuỗi từ mảng
+        var formattedPlaces = selectedPlaces.join(', ');
+      
+        // Cập nhật giá trị trong mã HTML
+        document.querySelector('.booking-ticket').textContent = formattedPlaces;
+        document.querySelector('.booking-cost').textContent = '$' + sumMoney;
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            getPhongbyPhimAndKtg();
+        });
+
+        function getPhongbyPhimAndKtg() {
+            let url = "http://localhost/movie_booking_project_team2/api/v1/phong/getPhongbyPhimAndKtg?maPhim=0faa8a88-7280-11ee-bb96-8cc84bf40472&maKTG=cac8aee5-7281-11ee-bb96-8cc84bf40472";
+            $.ajax({
+                url: url,
+                success: function (result) {
+                let html = '';
+                $.each(result, function (index,item) {
+                    
+                html += ` <div class="checkout-wrapper">
+                    <h2 class="page-heading">Movie</h2>
+                        <ul class="book-result">
+                            <li class="book-result__item">Movie: <span class="book-result__count">${item.TenPhim}</span>
+                            </li>
+                            <li class="book-result__item">Ngày chiếu: <span
+                                    class="book-result__count">${item.NgayChieu}</span></li>
+                            <li class="book-result__item">Suất chiếu: <span class="book-result__count ">${item.GioChieu}</span>
+                            </li>
+                            <li class="book-result__item">Phòng chiếu: <span class="book-result__count ">${item.TenPhong}</span>
+                            </li>
+                        </ul>
+                    </div>`;
+                    });
+                $("#movie_phong").html(html);
+
+                },
+                
+            });
+            
+            }
+            
+    </script>
 
 </body>
 
