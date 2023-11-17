@@ -139,9 +139,9 @@
                                     <span class="sits__indecator">F</span>
                                     <span class="sits__indecator">G</span>
                                     <span class="sits__indecator">I</span>
-                                    <span class="sits__indecator additional-margin">J</span>
+                                    <!-- <span class="sits__indecator additional-margin">J</span>
                                     <span class="sits__indecator">K</span>
-                                    <span class="sits__indecator">L</span>
+                                    <span class="sits__indecator">L</span> -->
                                 </aside>
 
                             <div id="sitsContainer"></div>
@@ -558,7 +558,7 @@
                                     <span class="choosen-place"></span>
                                 </div>
                                 <div class="checked-result">
-                                    $0
+                                    0đ
                                 </div>
                             </aside>
 
@@ -576,7 +576,7 @@
 
     <div class="clearfix"></div>
     <form id='film-and-time' class="booking-form" method='get' action='book3-buy.html'>
-
+        
         <input type='text' name='choosen-number' class="choosen-number">
         <input type='text' name='choosen-number--cheap' class="choosen-number--cheap">
         <input type='text' name='choosen-number--middle' class="choosen-number--middle">
@@ -586,6 +586,9 @@
 
 
         <div class="booking-pagination booking-pagination--margin">
+            <div class="checked-result" style="font-size: large; font-weight: bold;" >
+                0đ
+            </div>
             <a href="book1.html" class="booking-pagination__prev">
                 <span class="arrow__text arrow--prev">prev step</span>
                 <span class="arrow__info">what&amp;where&amp;when</span>
@@ -743,16 +746,29 @@
                     html += `<div class="sits__row">`; // Mở thẻ div của hàng mới
                     currentRow = item.SoHang;
                     }
+                    if(item.MaTT === '0')
+                    {
+                        if (item.MaLG ==='LG01')
+                        {
+                            html += `<span class="sits__place sits-price--cheap" data-maghe="${item.SoGhe}" data-price="${item.DonGia}"> ${item.SoGhe}</span>`;
 
-                    html += `<span class="sits__place sits-price--cheap" data-maghe="${item.SoGhe}" data-price="10"> ${item.SoGhe}</span>`;
-                    console.log(currentRow);
+                        }
+                        else if (item.MaLG === 'LG02')
+                        {
+                            html += `<span class="sits__place sits-price--middle" data-maghe="${item.SoGhe}" data-price="${item.DonGia}"> ${item.SoGhe}</span>`;
+                            console.log(item.MaLG);
+                        }
+                        else 
+                            html += `<span class="sits__place sits-price--expensive" data-maghe="${item.SoGhe}" data-price="${item.DonGia}"> ${item.SoGhe}</span>`;
+                    }
+                    else html += `<span class="sits__place sits-price--cheap sits-state--not" data-maghe="${item.SoGhe}" data-price='${item.DonGia}'> ${item.SoGhe}</span>`;
                     
                 });
 
                 html += `</div>`; // Đóng thẻ div của hàng cuối cùng
 
                 $("#sitsContainer").html(html)
-                console.log(html);
+                //console.log(html);
                 },
                 
             });

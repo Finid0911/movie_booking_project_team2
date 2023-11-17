@@ -49,13 +49,18 @@ class ChairTypeController extends BaseController
     $phimID = $_GET['maPhim'];
     $timeID = $_GET['maKTG']; 
     $sql = "SELECT * FROM phim LEFT JOIN lich_chieu ON phim.MaPhim = lich_chieu.MaPhim
-     LEFT JOIN ktg ON lich_chieu.MaKTG = ktg.MaKTG 
-     LEFT JOIN phong ON lich_chieu.MaPhong = phong.MaPhong 
-     LEFT JOIN ghe ON phong.MaPhong = ghe.MaPhong 
-     LEFT JOIN trang_thai ON ghe.MaTT = trang_thai.MaTT
-      LEFT JOIN so_ghe ON ghe.SoGhe = so_ghe.SoGhe 
-      where phim.MaPhim = '$phimID' and ktg.MaKTG = '$timeID'
-      order by so_ghe.SoHang, CAST(so_ghe.SoCot AS UNSIGNED);
+    LEFT JOIN ktg ON lich_chieu.MaKTG = ktg.MaKTG 
+    LEFT JOIN phong ON lich_chieu.MaPhong = phong.MaPhong 
+    LEFT JOIN ghe ON phong.MaPhong = ghe.MaPhong 
+    LEFT JOIN so_ghe ON ghe.SoGhe = so_ghe.SoGhe
+    LEFT JOIN trang_thai ON ghe.MaTT = trang_thai.MaTT
+    LEFT JOIN bao_gia ON bao_gia.MaKTG = ktg.MaKTG
+    LEFT JOIN gia ON bao_gia.MaGia = gia.MaGia
+    LEFT JOIN loai_ghe ON ghe.MaLG = loai_ghe.MaLG
+     where phim.MaPhim = '$phimID' and ktg.MaKTG = '$timeID'
+       and bao_gia.MaDD = phim.MaDD
+       and bao_gia.MaLG = loai_ghe.MaLG
+     order by so_ghe.SoHang, CAST(so_ghe.SoCot AS UNSIGNED);
     ";
     $result = $this->connection->query($sql);
     $data = array();
@@ -112,8 +117,10 @@ class ChairTypeController extends BaseController
         $response = $this->createChairType();
         break;
       case 'PUT':
+        $response = $this->updateChairType();
         break;
       case 'Delete':
+        $response = $this->deleteChairType();
         break;
 
     }

@@ -24,7 +24,8 @@ $controllerMappings = array(
     'gia' => 'GiaController',
     'ktg' => 'KhungThoiGianController',
     'phong' => 'PhongController',
-    'chairtype' => 'ChairTypeController'
+    'chairtype' => 'ChairTypeController',
+    'tickets' => 'TicketsController'
 );
 
 if (count($uriSegments) >= 4 && !empty($uriSegments) && isset($controllerMappings[$uriSegments[4]])) {

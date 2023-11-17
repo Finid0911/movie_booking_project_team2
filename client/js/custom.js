@@ -632,21 +632,21 @@ function init_BookingTwo() {
         );
 
         switch (ticketPrice) {
-          case "10":
-            sum += 10;
+          case "80000":
+            sum += 80000;
             cheap += 1;
             break;
-          case "20":
-            sum += 20;
+          case "85000":
+            sum += 85000;
             middle += 1;
             break;
-          case "30":
-            sum += 30;
+          case "90000":
+            sum += 90000;
             expansive += 1;
             break;
         }
 
-        $(".checked-result").text("$" + sum);
+        $(".checked-result").text(sum + "đ");
         localStorage.setItem('sumMoney', JSON.stringify(sum));
       }
     } else {
@@ -665,21 +665,21 @@ function init_BookingTwo() {
       localStorage.setItem('selectedPlaces', JSON.stringify(selectedPlaces));
 
       switch (ticketPrice) {
-        case "10":
-          sum -= 10;
-          cheap -= 1;
-          break;
-        case "20":
-          sum -= 20;
-          middle -= 1;
-          break;
-        case "30":
-          sum -= 30;
-          expansive -= 1;
-          break;
+        case "80000":
+            sum -= 80000;
+            cheap -= 1;
+            break;
+          case "85000":
+            sum -= 85000;
+            middle -= 1;
+            break;
+          case "90000":
+            sum -= 90000;
+            expansive -= 1;
+            break;
       }
 
-      $(".checked-result").text("$" + sum);
+      $(".checked-result").text(sum + "đ");
       localStorage.setItem('sumMoney', JSON.stringify(sum));
     }
     }
@@ -810,15 +810,18 @@ function init_BookingTwo() {
     }
 
     switch (ticketPrice) {
-      case 10:
-        sum += 10;
-        break;
-      case 20:
-        sum += 20;
-        break;
-      case 30:
-        sum += 30;
-        break;
+      case 80000:
+            sum += 80000;
+            cheap += 1;
+            break;
+          case 85000:
+            sum += 85000;
+            middle += 1;
+            break;
+          case 90000:
+            sum += 90000;
+            expansive += 1;
+            break;
     }
 
     $(".checked-result").text("$" + sum);
@@ -856,18 +859,21 @@ function init_BookingTwo() {
         }
 
         switch (ticketPrice) {
-          case 10:
-            sum -= 10;
+          case 80000:
+            sum -= 80000;
+            cheap -= 1;
             break;
-          case 20:
-            sum -= 20;
+          case 85000:
+            sum -= 85000;
+            middle -= 1;
             break;
-          case 30:
-            sum -= 30;
+          case 90000:
+            sum -= 90000;
+            expansive -= 1;
             break;
         }
 
-        $(".checked-result").text("$" + sum);
+        $(".checked-result").text(sum + "đ");
       }
     });
   }
