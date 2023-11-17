@@ -41,6 +41,40 @@ class ChairTypeController extends BaseController
     return $response;
   }
 
+  public function getAllChairofTimeid()
+  {
+    $response = null;
+
+    // Lấy tham số từ yêu cầu Ajax
+    $phimID = $_GET['maPhim'];
+    $timeID = $_GET['maKTG']; 
+    $sql = "SELECT * FROM phim LEFT JOIN lich_chieu ON phim.MaPhim = lich_chieu.MaPhim
+    LEFT JOIN ktg ON lich_chieu.MaKTG = ktg.MaKTG 
+    LEFT JOIN phong ON lich_chieu.MaPhong = phong.MaPhong 
+    LEFT JOIN ghe ON phong.MaPhong = ghe.MaPhong 
+    LEFT JOIN so_ghe ON ghe.SoGhe = so_ghe.SoGhe
+    LEFT JOIN trang_thai ON ghe.MaTT = trang_thai.MaTT
+    LEFT JOIN bao_gia ON bao_gia.MaKTG = ktg.MaKTG
+    LEFT JOIN gia ON bao_gia.MaGia = gia.MaGia
+    LEFT JOIN loai_ghe ON ghe.MaLG = loai_ghe.MaLG
+     where phim.MaPhim = '$phimID' and ktg.MaKTG = '$timeID'
+       and bao_gia.MaDD = phim.MaDD
+       and bao_gia.MaLG = loai_ghe.MaLG
+     order by so_ghe.SoHang, CAST(so_ghe.SoCot AS UNSIGNED);
+    ";
+    $result = $this->connection->query($sql);
+    $data = array();
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    }
+    // Trả về kết quả
+    $response['status_code_header'] = 'HTTP/1.1 200 OK';
+    $response['body'] = json_encode($data );
+
+    return $response; 
+  }
   public function updateChairType()
   {
     $response = null;
@@ -60,22 +94,33 @@ class ChairTypeController extends BaseController
     return $response;
   }
 
-  public function processRequest($id)
+  private function handleUrl($method) {
+    if($method === "getAllChairs") {
+      return $this->getAllChairofTimeid();
+    }
+  }
+
+  public function processRequest($id, $method)
   {
     switch ($this->requestMethod) {
       case 'GET':
         if (isset($id)) {
           $response = $this->getChairTypeById($id);
         }else {
-          $response = $this->getChairTypes();
+          if(!isset($method))
+              $response = $this->getChairTypes();
+          else $response = $this->handleUrl($method);
         }
+
         break;
       case 'POST':
         $response = $this->createChairType();
         break;
       case 'PUT':
+        $response = $this->updateChairType();
         break;
       case 'Delete':
+        $response = $this->deleteChairType();
         break;
 
     }
@@ -85,5 +130,6 @@ class ChairTypeController extends BaseController
     }
   }
 }
+
 
 ?>
