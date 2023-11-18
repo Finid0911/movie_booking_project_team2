@@ -1412,7 +1412,7 @@ function init_MoviePage() {
       "<form id='comment-form' class='comment-form' method='post'>\
                             <textarea class='comment-form__text' placeholder='Add you comment here'></textarea>\
                             <label class='comment-form__info'>250 characters left</label>\
-                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>add comment</button>\
+                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>Thêm bình luận</button>\
                         </form>"
     );
   });
@@ -1985,7 +1985,7 @@ function init_Cinema() {
       "<form id='comment-form' class='comment-form' method='post'>\
                             <textarea class='comment-form__text' placeholder='Add you comment here'></textarea>\
                             <label class='comment-form__info'>250 characters left</label>\
-                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>add comment</button>\
+                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>Thêm bình luận</button>\
                         </form>"
     );
   });
@@ -2208,7 +2208,7 @@ function init_SinglePage() {
       "<form id='comment-form' class='comment-form' method='post'>\
                             <textarea class='comment-form__text' placeholder='Add you comment here'></textarea>\
                             <label class='comment-form__info'>250 characters left</label>\
-                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>add comment</button>\
+                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>Thêm bình luận</button>\
                         </form>"
     );
   });

@@ -18,17 +18,17 @@ function getMovieDetail(id) {
             <div class="col-sm-8 col-md-9">
                 <p class="movie__time">169 min</p>
 
-                <p class="movie__option"><strong>Country: </strong><a href="#">Việt Nam</a></p>
-                <p class="movie__option"><strong>Year: </strong><a href="#">${data.NamSX}</a></p>
-                <p class="movie__option"><strong>Category: </strong><a href="#">Adventure</a>, <a
+                <p class="movie__option"><strong>Quốc gia: </strong><a href="#">Việt Nam</a></p>
+                <p class="movie__option"><strong>Năm: </strong><a href="#">${data.NamSX}</a></p>
+                <p class="movie__option"><strong>Thể loại: </strong><a href="#">Adventure</a>, <a
                         href="#">Fantazy</a></p>
-                <p class="movie__option"><strong>Release date: </strong>${data.KhoiChieu}</p>
-                <p class="movie__option"><strong>Director: </strong><a href="#">${data.DaoDien}</a></p>
-                <p class="movie__option"><strong>Actors: </strong>${data.DienVienChinh}</p>
+                <p class="movie__option"><strong>Ngày chiếu: </strong>${data.KhoiChieu}</p>
+                <p class="movie__option"><strong>Đạo diễn: </strong><a href="#">${data.DaoDien}</a></p>
+                <p class="movie__option"><strong>Diễn viên: </strong>${data.DienVienChinh}</p>
 
 
                 <div class="movie__btns movie__btns--full">
-                    <a href="#" class="btn btn-md btn--warning">book a ticket for this movie</a>
+                    <a href="#" class="btn btn-md btn--warning">Đặt vé cho phim này</a>
                 </div>
 
             </div>

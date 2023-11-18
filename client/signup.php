@@ -312,7 +312,7 @@ mysqli_close($conn);
                         <option value="4">By title</option>
                         <option value="5">By year</option>
                     </select>
-                    <button type='submit' class="btn btn-md btn--danger search__button">search a movie</button>
+                    <button type='submit' class="btn btn-md btn--danger search__button">Tìm phim</button>
                 </form>
             </div>
         </div> -->
