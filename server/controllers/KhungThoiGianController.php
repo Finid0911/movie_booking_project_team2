@@ -80,6 +80,32 @@ class KhungThoiGianController extends BaseController
         return $response;
     }
 
+    public function getAllTimeOfMovieId()
+    {
+        $movieId = $_GET["maphim"];
+        $query = "select phim.MaPhim,phim.TenPhim, lich_chieu.MaPhong, ktg.MaKTG,ktg.NgayChieu, ktg.GioChieu, phong.MaPhong, phong.TenPhong
+        from phim, lich_chieu,ktg, phong
+        where phim.MaPhim = lich_chieu.MaPhim
+            and lich_chieu.MaKTG = ktg.MaKTG 
+            and phong.MaPhong = lich_chieu.MaPhong
+              and phim.MaPhim = '$movieId';
+        ";
+
+        $result = $this->connection->query($query);
+        $data = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+
+        // Trả về kết quả
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($data);
+
+        return $response;
+    }
+
     private function notFoundResponse()
     {
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
@@ -87,14 +113,24 @@ class KhungThoiGianController extends BaseController
         return $response;
     }
 
-    public function processRequest($id = null)
+    private function handleUrl($method)
+    {
+        if ($method === "getAllTimeOfMovieId") {
+            return $this->getAllTimeOfMovieId();
+        }
+    }
+
+    public function processRequest($id, $method)
     {
         switch ($this->requestMethod) {
             case 'GET':
-                if ($id) {
+                if (isset($id)) {
                     $response = $this->getKhungThoiGianById($id);
                 } else {
-                    $response = $this->getKhungThoiGian();
+                    if (!isset($method))
+                        $response = $this->getKhungThoiGian();
+                    else
+                        $response = $this->handleUrl($method);
                 }
                 break;
             case 'POST':

@@ -18,14 +18,15 @@ $controllerMappings = array(
     'formats' => 'FormatsController',
     'labels' => 'LabelsController',
     'genres' => 'GenresController',
-    'nations' => 'NationsController',   
+    'nations' => 'NationsController',
     'employees' => 'EmployeesController',
     'roles' => 'RolesController',
     'gia' => 'GiaController',
     'ktg' => 'KhungThoiGianController',
     'phong' => 'PhongController',
     'chairtype' => 'ChairTypeController',
-    'tickets' => 'TicketsController'
+    'tickets' => 'TicketsController',
+    'comments' => 'CommentController'
 );
 
 if (count($uriSegments) >= 4 && !empty($uriSegments) && isset($controllerMappings[$uriSegments[4]])) {
@@ -40,16 +41,15 @@ if (count($uriSegments) >= 4 && !empty($uriSegments) && isset($controllerMapping
         // Ex: $instance = new MoviesController('GET')
         $controllerInstance = new $controllerName($requestMethod);
         $method = null;
-        $id = null; 
+        $id = null;
         if (isset($uriSegments[5])) {
             if (empty($_GET)) {
                 $id = $uriSegments[5];
-            }
-            else {
+            } else {
                 $id = null;
                 $method = $uriSegments[5];
             }
-        } 
+        }
         // Thêm tên miền vào URL của yêu cầu API
         //$apiUrl = $domain . $_SERVER['REQUEST_URI'];
 

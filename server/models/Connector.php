@@ -8,8 +8,7 @@ class Connector
     private $user = "root";
     private $pass = "";
     private $dbname = "qlyrap";
-    //private $port = "3390";
-    private $port = "3306";
+    private $port = "3390";
     private function __construct()
     {
         $this->connection = new mysqli($this->servername, $this->user, $this->pass, $this->dbname, $this->port);

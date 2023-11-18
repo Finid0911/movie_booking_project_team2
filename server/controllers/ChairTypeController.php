@@ -47,7 +47,7 @@ class ChairTypeController extends BaseController
 
     // Lấy tham số từ yêu cầu Ajax
     $phimID = $_GET['maPhim'];
-    $timeID = $_GET['maKTG']; 
+    $timeID = $_GET['maKTG'];
     $sql = "SELECT * FROM phim LEFT JOIN lich_chieu ON phim.MaPhim = lich_chieu.MaPhim
     LEFT JOIN ktg ON lich_chieu.MaKTG = ktg.MaKTG 
     LEFT JOIN phong ON lich_chieu.MaPhong = phong.MaPhong 
@@ -58,22 +58,22 @@ class ChairTypeController extends BaseController
     LEFT JOIN gia ON bao_gia.MaGia = gia.MaGia
     LEFT JOIN loai_ghe ON ghe.MaLG = loai_ghe.MaLG
      where phim.MaPhim = '$phimID' and ktg.MaKTG = '$timeID'
-       and bao_gia.MaDD = phim.MaDD
+     and bao_gia.MaDD = phim.MaDD
        and bao_gia.MaLG = loai_ghe.MaLG
      order by so_ghe.SoHang, CAST(so_ghe.SoCot AS UNSIGNED);
     ";
     $result = $this->connection->query($sql);
     $data = array();
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
+      while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+      }
     }
     // Trả về kết quả
     $response['status_code_header'] = 'HTTP/1.1 200 OK';
-    $response['body'] = json_encode($data );
+    $response['body'] = json_encode($data);
 
-    return $response; 
+    return $response;
   }
   public function updateChairType()
   {
@@ -94,8 +94,9 @@ class ChairTypeController extends BaseController
     return $response;
   }
 
-  private function handleUrl($method) {
-    if($method === "getAllChairs") {
+  private function handleUrl($method)
+  {
+    if ($method === "getAllChairs") {
       return $this->getAllChairofTimeid();
     }
   }
@@ -106,10 +107,11 @@ class ChairTypeController extends BaseController
       case 'GET':
         if (isset($id)) {
           $response = $this->getChairTypeById($id);
-        }else {
-          if(!isset($method))
-              $response = $this->getChairTypes();
-          else $response = $this->handleUrl($method);
+        } else {
+          if (!isset($method))
+            $response = $this->getChairTypes();
+          else
+            $response = $this->handleUrl($method);
         }
 
         break;

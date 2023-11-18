@@ -39,6 +39,25 @@ class MoviesController extends BaseController
     return $response;
   }
 
+  public function getTop5Movie()
+  {
+    $response = null;
+    $sql = "SELECT p.ten_phim, So_ve_dat
+    FROM Phim p
+    ORDER BY So_ve_dat DESC
+    LIMIT 5";
+    $result = $this->connection->query($sql);
+    $movie = array();
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $movie[] = $row;
+      }
+    }
+    $response['status_code_header'] = 'HTTP/1.1 200 OK';
+    $response['body'] = json_encode($movie);
+    return $response;
+  }
+
   public function updateMovie()
   {
     $response = null;

@@ -13,8 +13,9 @@ function authenticateLogin($user_email, $user_password)
     $username = 'root';
     $password = '';
     $dbname = 'qlyrap';
+    $port = "3390";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname, $port);
 
     // Kiểm tra kết nối
     if ($conn->connect_error) {
@@ -26,14 +27,23 @@ function authenticateLogin($user_email, $user_password)
     $stmt->bind_param("ss", $user_email, $user_password);
     $stmt->execute();
     $result = $stmt->get_result();
+    $data = null;
 
-    $hoTen = '';
+    if ($result->num_rows > 0) {
+        // Lấy ra phần tử đầu tiên  và return 
+        $data = $result->fetch_assoc();
 
-    if ($result->num_rows == 1) {
-        $_SESSION['user_email'] = $user_email;
+        $ma_thanh_vien = $data['Ma_thanh_vien'];
+        $ten_thanh_vien = $data['HoTen'];
 
-        header('Location: index.php');
-        exit();
+        // Thời gian sống của cookie: 7 ngày
+        $sevenDays = time() + (7 * 24 * 60 * 60);
+
+        // Đặt cookie chứa dữ liệu JSON
+        setcookie("maThanhVien", $ma_thanh_vien, $sevenDays, "/");
+        setcookie("tenThanhVien", $ten_thanh_vien, $sevenDays, "/");
+
+        header('Location: index.html');
     } else {
         echo '<p class="error-message">Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu.</p>';
     }
@@ -45,7 +55,6 @@ function authenticateLogin($user_email, $user_password)
 if (isset($_POST['login'])) {
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
-
     authenticateLogin($user_email, $user_password);
 }
 
@@ -105,10 +114,6 @@ if (isset($_POST['login'])) {
 
 <body>
     <div class="wrapper">
-        <!-- Banner -->
-        <div class="banner-top">
-            <img alt='top banner' src="http://placehold.it/1600x90">
-        </div>
 
         <!-- Header section -->
         <header class="header-wrapper">
