@@ -98,15 +98,23 @@
                     <img alt='logo' src="images/logo.png">
                 </a>
 
-                <div class="control-panel header-user">
-                    <div class="auth auth--home" id="username">
+                <!-- Main website navigation-->
+                <nav id="navigation-box">
+                    <!-- Toggle for mobile menu mode -->
+                    <a href="#" id="navigation-toggle">
+                        <span class="menu-icon">
+                            <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
+                                <span class="lines"></span>
+                            </span>
+                        </span>
+                    </a>
 
-                        <!-- thay vào đây -->
+                </nav>
 
-
-                    </div>
-                    <a href="offers.html" id="show-ticket" class="btn btn-md btn--warning btn--book">Xem vé đã
-                        đặt</a>
+                <!-- Additional header buttons / Auth and direct link to booking-->
+                <div class="control-panel">
+                    <a href="#" class="btn btn--sign login-window" id="btn-login">Sign in</a>
+                    <a href="#" class="btn btn-md btn--warning btn--book login-window">Book a ticket</a>
                 </div>
 
             </div>
@@ -117,7 +125,7 @@
             <div class="container container--add">
                 <div id='search-form' method='get' class="search" style="top:9px">
                     <input type="text" class="search__field" placeholder="Search" id="search-input">
-                    <button id="search-btn" class="btn btn-md btn--danger search__button">search a movie</button>
+                    <button id="search-btn" class="btn btn-md btn--danger search__button">Tìm phim</button>
                 </div>
             </div>
         </div>
@@ -158,12 +166,12 @@
 
                 </div>
 
-                <h2 class="page-heading">showtime &amp; tickets</h2>
+                <h2 class="page-heading">Giờ chiếu &amp; Vé</h2>
                 <div class="choose-container">
                     <div class="time-select">
                         <div class="time-select__group group--first">
                             <div class="col-sm-4">
-                                <p class="time-select__place">Timenow</p>
+                                <p class="time-select__place">Chọn khung thời gian</p>
                             </div>
                             <ul class="col-sm-8 items-wrap" id="ktg">
                                 <!-- <li class="time-select__item" data-time='09:40'>09:40</li> -->
@@ -181,7 +189,7 @@
                         <div id='cimenas-map'></div>
                     </div>
 
-                    <h2 class="page-heading">comments</h2>
+                    <h2 class="page-heading">Bình luận</h2>
 
                     <div class="comment-wrapper">
                         <div id="comment-form" class="comment-form">
@@ -350,7 +358,42 @@
         });
     </script>
     <script src="../client/js/pages/movie-detail.js"></script>
+    <script>
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (const cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.split('=');
+                if (cookieName === name) {
+                return cookieValue;
+                }
+            }
+            return null;
+        }
 
+        // Kiểm tra xem có cookie 'user_email' hay không
+        const savedUserEmail = decodeURIComponent(getCookie('userFullname'));
+
+        const mainContentDiv = document.getElementById("username");
+
+        if (savedUserEmail=="null") {
+            // Người dùng chưa đăng nhập
+            console.log('Vui lòng đăng nhập.');
+            mainContentDiv.innerHTML = `<a href="#" class="btn btn--sign btn--singin">Đăng ký / Đăng nhập</a>
+                                        <ul class="auth__function">
+                                            <li><a href="signup.php" class="auth__function-item">Đăng ký</a></li>
+                                            <li><a href="login.php" class="auth__function-item">Đăng nhập</a></li>
+                                        </ul>`;
+        } else {
+            // Người dùng đã đăng nhập
+            console.log(`Xin chào, ${savedUserEmail}!`);
+            mainContentDiv.innerHTML = `<a href="#" class="btn btn--sign btn--singin"> ${savedUserEmail} </a>
+                                        <ul class="auth__function">
+                                            <li><a href="logout.php" class="auth__function-item">Đăng xuất</a></li>
+                                        </ul>`;
+        
+        }
+        
+    </script>
 </body>
 
 </html>
