@@ -1,5 +1,5 @@
 function getAllMovies() {
-  let url = "http://localhost:800/movie_booking_project_team2/api/v1/movies";
+  let url = "http://localhost/movie_booking_project_team2/api/v1/movies";
   $.ajax({
     url: url,
     success: function (result) {
@@ -38,7 +38,7 @@ function handleSearch() {
 }
 
 function getMovieFiter(query) {
-  let url = `http://localhost:800/movie_booking_project_team2/api/v1/movies?q=${query}`;
+  let url = `http://localhost/movie_booking_project_team2/api/v1/movies?q=${query}`;
   $.ajax({
     url: url,
     success: function (result) {

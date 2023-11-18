@@ -756,7 +756,7 @@
         });
 
         function getAllSeats() {
-            let url = `http://localhost:800/movie_booking_project_team2/api/v1/chairtype/getAllChairs?maPhim=${localStorage.getItem("maPhim")}&maKTG=${localStorage.getItem("selectedTime")}`;
+            let url = `http://localhost/movie_booking_project_team2/api/v1/chairtype/getAllChairs?maPhim=${localStorage.getItem("maPhim")}&maKTG=${localStorage.getItem("selectedTime")}`;
             $.ajax({
                 url: url,
                 success: function (result) {

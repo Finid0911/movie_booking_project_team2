@@ -347,7 +347,7 @@
 
         function getPhongbyPhimAndKtg() {
             let url =
-                `http://localhost:800/movie_booking_project_team2/api/v1/phong/getPhongbyPhimAndKtg?maPhim=${localStorage.getItem("maPhim")}&maKTG=${localStorage.getItem("selectedTime")}`;
+                `http://localhost/movie_booking_project_team2/api/v1/phong/getPhongbyPhimAndKtg?maPhim=${localStorage.getItem("maPhim")}&maKTG=${localStorage.getItem("selectedTime")}`;
             $.ajax({
                 url: url,
                 success: function (result) {
@@ -380,7 +380,7 @@
             const buyElem = document.querySelector("#purchase");
             buyElem.addEventListener("click", async function (event) {
                 event.preventDefault();
-                const url = `http://localhost:800/movie_booking_project_team2/api/v1/tickets/createTicket`;
+                const url = `http://localhost/movie_booking_project_team2/api/v1/tickets/createTicket`;
                 const maKTG = localStorage.getItem("selectedTime");
                 const dsGheDat = localStorage.getItem("selectedPlaces");
                 const maPhim = localStorage.getItem("maPhim");
