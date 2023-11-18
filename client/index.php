@@ -102,7 +102,7 @@ session_start();
                                 <li class="menu__nav-item"><a href="contact.html">Contact us</a></li>
                                 <li class="menu__nav-item"><a href="404.html">404 error</a></li>
                                 <li class="menu__nav-item"><a href="coming-soon.html">Coming soon</a></li>
-                                <li class="menu__nav-item"><a href="login.html">Login/Registration</a></li>
+                                <li class="menu__nav-item"><a href="login.php">Login/Registration</a></li>
                             </ul>
                         </li>
                         <li>
@@ -213,6 +213,7 @@ session_start();
                         $username = 'root';
                         $password = '';
                         $dbname = 'qlyrap';
+                        //$port = "3306";
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 

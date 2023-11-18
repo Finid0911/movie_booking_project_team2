@@ -1,94 +1,88 @@
 <?php
-     // Thực hiện kết nối CSDL
-     $servername = 'localhost';
-     $username = 'root';
-     $password = '';
-     $dbname = 'qlyrap';
- 
-     $conn = new mysqli($servername, $username, $password, $dbname);
-    
-    if (!$conn) {
-        die("Kết nối không thành công: " . mysqli_connect_error());
+// Thực hiện kết nối CSDL
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'qlyrap';
+//$port = 3306;
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if (!$conn) {
+    die("Kết nối không thành công: " . mysqli_connect_error());
+}
+
+// Xử lý đăng ký khi form được gửi
+if (
+    isset($_POST['user_fullname']) && isset($_POST['user_email'])
+    && isset($_POST['user_password']) && isset($_POST['user_phone'])
+    && isset($_POST['user_birth']) && isset($_POST['user_gender'])
+) {
+
+    $fullname = $_POST['user_fullname'];
+    $email = $_POST['user_email'];
+    $password = $_POST['user_password'];
+    $phone = $_POST['user_phone'];
+    $birth = $_POST['user_birth'];
+    $gender = $_POST['user_gender'];
+
+    // Khai báo mảng để lưu trữ thông báo lỗi (nếu có)
+    $errors = array();
+
+    // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu chưa
+    $query = "SELECT * FROM `thanh_vien` WHERE Email='$email'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+
+        echo '<p class="error-message">Email đã tồn tại. Vui lòng sử dụng email khác.</p>';
     }
-    
-    // Xử lý đăng ký khi form được gửi
-    if ( isset($_POST['user_fullname']) && isset($_POST['user_email']) 
-        && isset($_POST['user_password']) && isset($_POST['user_phone']) 
-        && isset($_POST['user_birth']) && isset($_POST['user_gender']) ) {
+    // Kiểm tra dữ liệu đầu vào
 
-        $fullname = $_POST['user_fullname'];
-        $email = $_POST['user_email'];
-        $password = $_POST['user_password'];
-        $phone = $_POST['user_phone'];
-        $birth = $_POST['user_birth'];
-        $gender = $_POST['user_gender'];
+    // Kiểm tra định dạng email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Email không hợp lệ.";
+    }
 
-        // Khai báo mảng để lưu trữ thông báo lỗi (nếu có)
-        $errors = array();
-    
-        // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu chưa
-        $query = "SELECT * FROM `thanh_vien` WHERE Email='$email'";
-        $result = mysqli_query($conn, $query);
-    
-        if (mysqli_num_rows($result) > 0) {
-            
-            echo '<p class="error-message">Email đã tồn tại. Vui lòng sử dụng email khác.</p>';
+    // Kiểm tra độ dài mật khẩu
+    if (strlen($password) < 6) {
+        $errors[] = "Mật khẩu phải có ít nhất 6 ký tự.";
+    }
+
+    // Kiểm tra định dạng số điện thoại
+    if (!preg_match("/^[0-9]{10}$/", $phone)) {
+        $errors[] = "Số điện thoại không hợp lệ.";
+    }
+
+    // Kiểm tra ngày sinh, có thể sử dụng hàm strtotime để kiểm tra
+    if (!strtotime($birth)) {
+        $errors[] = "Ngày sinh không hợp lệ.";
+    }
+    // Kiểm tra giới tính
+    if ($gender !== 'Nam' && $gender !== 'Nữ' && $gender !== 'Khác') {
+        $errors[] = "Giới tính không hợp lệ.";
+    }
+
+    // Kiểm tra nếu có lỗi, hiển thị thông báo lỗi
+    if (!empty($errors)) {
+        foreach ($errors as $error) {
+
+            echo '<p class="error-message">' . $error . '</p>';
         }
-        // Kiểm tra dữ liệu đầu vào
-
-        // Kiểm tra tên đầy đủ
-        if (empty($fullname)) {
-            $errors[] = "Tên đầy đủ không được để trống.";
-        } elseif (!preg_match("/^[a-zA-Z ]+$/", $fullname)) {
-            $errors[] = "Tên đầy đủ chỉ được chứa chữ cái và dấu cách.";
-        }
-
-        // Kiểm tra định dạng email
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Email không hợp lệ.";
-        }
-
-        // Kiểm tra độ dài mật khẩu
-        if (strlen($password) < 6) {
-            $errors[] = "Mật khẩu phải có ít nhất 6 ký tự.";
-        }
-
-        // Kiểm tra định dạng số điện thoại
-        if (!preg_match("/^[0-9]{10}$/", $phone)) {
-            $errors[] = "Số điện thoại không hợp lệ.";
-        }
-
-        // Kiểm tra ngày sinh, có thể sử dụng hàm strtotime để kiểm tra
-        if (!strtotime($birth)) {
-            $errors[] = "Ngày sinh không hợp lệ.";
-        }
-
-        // Kiểm tra giới tính
-        if ($gender !== 'male' && $gender !== 'female' && $gender !== 'other') {
-            $errors[] = "Giới tính không hợp lệ.";
-        }
-
-        // Kiểm tra nếu có lỗi, hiển thị thông báo lỗi
-        if (!empty($errors)) {
-            foreach ($errors as $error) {
-                
-                echo '<p class="error-message">' . $error . '</p>';
-            }
-        } 
-         else {
-            // Thêm người dùng mới vào cơ sở dữ liệu
-            $insert_query = "INSERT INTO `thanh_vien`(`Ma_thanh_vien`,`HoTen`, `Email`, `MatKhau`, `SDT`, `SoThe`, `NgaySinh`, `GioiTinh`) 
+    } else {
+        // Thêm người dùng mới vào cơ sở dữ liệu
+        $insert_query = "INSERT INTO `thanh_vien`(`Ma_thanh_vien`,`HoTen`, `Email`, `MatKhau`, `SDT`, `SoThe`, `NgaySinh`, `GioiTinh`) 
             VALUES (UUID(), '$fullname','$email','$password','$phone','HUEFE784EE','$birth','$gender')";
-            if (mysqli_query($conn, $insert_query)) {
-                echo '<div style="background-color: #4CAF50; color: white; text-align: center; padding: 10px;">Đăng ký thành công!</div>';
-            } else {
-                echo "Đã xảy ra lỗi: " . mysqli_error($conn);
-            }
+        if (mysqli_query($conn, $insert_query)) {
+            echo '<div style="background-color: #4CAF50; color: white; text-align: center; padding: 10px;">Đăng ký thành công!</div>';
+        } else {
+            echo "Đã xảy ra lỗi: " . mysqli_error($conn);
         }
     }
-    
-    // Đóng kết nối
-    mysqli_close($conn);
+}
+
+// Đóng kết nối
+mysqli_close($conn);
 ?>
 <!doctype html>
 <html>
@@ -137,6 +131,7 @@
             width: 120px;
             text-align: right;
         }
+
         .error-message {
             background-color: #f44336;
             color: white;
@@ -199,7 +194,7 @@
                                 <li class="menu__nav-item"><a href="contact.html">Contact us</a></li>
                                 <li class="menu__nav-item"><a href="404.html">404 error</a></li>
                                 <li class="menu__nav-item"><a href="coming-soon.html">Coming soon</a></li>
-                                <li class="menu__nav-item"><a href="login.html">Login/Registration</a></li>
+                                <li class="menu__nav-item"><a href="login.php">Login/Registration</a></li>
                             </ul>
                         </li>
                         <li>
@@ -333,7 +328,7 @@
                     </div>
 
                     <p class="login__tracker">or</p> -->
-                    
+
 
             <div class="field-wrap">
                 <input type='text' placeholder='Họ tên' name='user_fullname' class="login__input">
@@ -425,7 +420,7 @@
     <!-- Form element -->
     <script src="js/external/form-element.js"></script>
     <!-- Form validation -->
-    
+
 
     <!-- Custom -->
     <script src="js/custom.js"></script>
