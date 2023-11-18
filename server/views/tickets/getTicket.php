@@ -45,9 +45,10 @@
         <tr>
             <td><?php echo $field["MaVe"] ?></td>
             <td><?php echo $field["TenPhim"] ?></td>
-            <td><?php echo $field["NgayChieu"] + $field["GioChieu"]?></td>
+            <td><?php echo $field["NgayChieu"] . " - " .$field["GioChieu"]?></td>
             <td><?php echo $field["SoGhe"] ?></td>
-            <td><?php echo $field["DaoDien"] ?></td>
+            <td><?php echo $field["TenPhong"] ?></td>
+            <td><?php echo $field["DonGia"] ?></td>
             <td>
                 <a href="?action=seedetail">
                     <img src="../assets/img/icons/info.png" style="width: 35px; height: 35px; margin-right: 5px"
