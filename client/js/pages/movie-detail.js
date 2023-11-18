@@ -1,6 +1,6 @@
 function getMovieDetail(id) {
   if (id) {
-    let url = `http://localhost:800/movie_booking_project_team2/api/v1/movies/${id}`;
+    let url = `http://localhost/movie_booking_project_team2/api/v1/movies/${id}`;
     fetch(url)
       .then((res) => {
         return res.json();
@@ -58,7 +58,7 @@ function selectTime(id) {
       // Chuyển hướng sang trang "book2"
       console.log("test");
       if (!localStorage.getItem("maThanhVien")) {
-        window.location.href = "login.html";
+        window.location.href = "login.php";
       } else {
         window.location.href = "book2.html";
       }
@@ -67,7 +67,7 @@ function selectTime(id) {
 }
 
 async function getAllTimeOfMovie(id) {
-  let url = `http://localhost:800/movie_booking_project_team2/api/v1/ktg/getAllTimeOfMovieId?maphim=${id}`;
+  let url = `http://localhost/movie_booking_project_team2/api/v1/ktg/getAllTimeOfMovieId?maphim=${id}`;
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -88,7 +88,7 @@ async function getAllTimeOfMovie(id) {
 
 async function showComment(id) {
   const res = await fetch(
-    `http://localhost:800/movie_booking_project_team2/api/v1/comments?maPhim=${id}`
+    `http://localhost/movie_booking_project_team2/api/v1/comments?maPhim=${id}`
   );
   const data = await res.json();
   console.log(data);
@@ -114,7 +114,7 @@ async function addComment(id) {
   };
   const json = JSON.stringify(data);
   const res = await fetch(
-    "http://localhost:800/movie_booking_project_team2/api/v1/comments",
+    "http://localhost/movie_booking_project_team2/api/v1/comments",
     {
       method: "POST",
       headers: {
