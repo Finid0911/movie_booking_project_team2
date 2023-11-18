@@ -32,6 +32,5 @@
               ' . $optionsHTML . '
           </div>';
 
-        echo $sql;
     }
 ?>

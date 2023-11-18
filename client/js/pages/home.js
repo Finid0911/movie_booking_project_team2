@@ -8,7 +8,7 @@ function getAllMovies() {
         html += ` <div class="movie movie--test movie--test--dark movie--test--left" data-maphim=${item.MaPhim}>
             <div class="movie__images">
                 <a href="movie-page-full.html?id=${item.MaPhim}" class="movie-beta__link">
-                <img alt='' src="images/movies/${item.AnhDaiDien}">
+                <img alt='' src="images/movies/${item.AnhDaiDien}" style="height: 280px; width:240px">
                 </a>
             </div>
 

@@ -36,6 +36,10 @@ function getMovieDetail(id) {
         $(".movie .page-heading").html(`${data.TenPhim}`);
         $(".movie .movie__info").html(html);
         $(".movie .noi-dung").html(`${data.NoiDung}`);
+        $("#trailer")
+          .html(`<a href='${data.Trailer}' class="movie__media-item ">
+                <img alt='' src="images/movies/${data.AnhDaiDien}" style="height:150px; width:100px">
+            </a>`);
       });
   }
 }

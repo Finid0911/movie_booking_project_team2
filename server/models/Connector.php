@@ -11,7 +11,7 @@ class Connector
     //private $port = "3306";
     private function __construct()
     {
-        $this->connection = new mysqli($this->servername, $this->user, $this->pass, $this->dbname, $this->port);
+        $this->connection = new mysqli($this->servername, $this->user, $this->pass, $this->dbname);
 
         // Check connection
         if ($this->connection->connect_error) {

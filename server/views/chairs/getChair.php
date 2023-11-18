@@ -73,7 +73,7 @@
     
     echo '<div id="phantrang_sp">';
     // Tính tổng kết quả trong toàn DB: 
-    $result =  queryDB("SELECT COUNT(*) as Num FROM phong");  
+    $result =  queryDB("SELECT COUNT(*) as Num FROM ghe");  
     while($row = $result->fetch_assoc()) {
         $total_results = $row['Num'];
     }
@@ -84,7 +84,7 @@
     // Tạo liên kết đến trang trước trang đang xem 
     if($page > 1){  
         $prev = ($page - 1);  
-        echo "<a href=\"".$_SERVER['PHP_SELF']."?action=getRoom&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
+        echo "<a href=\"".$_SERVER['PHP_SELF']."?action=getChair&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
     }  
 
     for($i = 1; $i <= $total_pages; $i++){  
@@ -93,14 +93,14 @@
                 echo "$i&nbsp;";  
             } 	
         } else {  
-            echo "<a href=\"".$_SERVER['PHP_SELF']."?action=getRoom&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
+            echo "<a href=\"".$_SERVER['PHP_SELF']."?action=getChair&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
         }  
     }  
 
     // Tạo liên kết đến trang tiếp theo  
     if($page < $total_pages){  
         $next = ($page + 1);  
-        echo "<a href=\"".$_SERVER['PHP_SELF']."?action=getRoom&page=$next\"><button class='trang'>Trang sau</button></a>";  
+        echo "<a href=\"".$_SERVER['PHP_SELF']."?action=getChair&page=$next\"><button class='trang'>Trang sau</button></a>";  
     }  
     echo "</center>";
 ?>
