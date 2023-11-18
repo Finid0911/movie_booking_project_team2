@@ -61,7 +61,7 @@
         if(queryDB($sql_insert1) === TRUE && queryDB($sql_insert2) === TRUE && queryDB($sql_update) === TRUE) {
             echo "Book successfully!";
             $message = "Book thành công!";
-            echo "<script>alert('$totalPrice');</script>";
+            echo "<script>alert('$message');</script>";
             echo "<script> window.location.href='http://localhost/movie_booking_project_team2/server/views/?action=getTicket' </script>";
             //header("Location: http://localhost/movie_booking_project_team2/server/views/?action=getTicket");
         } else {

@@ -128,8 +128,7 @@
                                 <div class="ticket__inner">
 
                                     <div class="ticket-secondary">
-                                        <span class="ticket__item">Ticket number <strong
-                                                class="ticket__number">a126bym4</strong></span>
+                                        <span class="ticket__item">Ticket number </span>
                                         <span class="ticket__item ticket__date" id="date-now">25/10/2013</span>
                                         <span class="ticket__item ticket__time" id="time-setted">17:45</span>
                                         <span class="ticket__item">Cinema: <span
@@ -137,7 +136,7 @@
                                         <span class="ticket__item">Hall: <span
                                                 class="ticket__hall">Visconti</span></span>
                                         <span class="ticket__item ticket__price">price: <strong
-                                                class="ticket__cost">$60</strong></span>
+                                                class="ticket__cost" id="cost">$60</strong></span>
                                     </div>
 
                                     <div class="ticket-primery">
@@ -208,7 +207,8 @@
             }
             $('.top-scroll').parent().find('.top-scroll').remove();
             $(".ticket__movie").text(localStorage.getItem('name'));
-            $("#time-setted").text(localStorage.getItem("selectedTime"));
+            $("#time-setted").text(localStorage.getItem("time"));
+            $("#cost").text(localStorage.getItem("sumMoney") + " VNĐ");
             var sit = localStorage.getItem("selectedPlaces");
             var selectedPlaces = JSON.parse(sit);
             $("#sit-setted").text(selectedPlaces.join(", "))
