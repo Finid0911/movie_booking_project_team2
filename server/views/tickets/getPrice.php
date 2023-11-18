@@ -5,7 +5,7 @@
         $movieID = $_POST['tenPhim'];
         $chairID = $_POST['chair'];
         
-        $sql = "SELECT * FROM gia INNER JOIN Bao_Gia ON gia.MaGia = Bao_gia.MaGia 
+        $sql = "SELECT distinct gia.MaGia, DonGia FROM gia INNER JOIN Bao_Gia ON gia.MaGia = Bao_gia.MaGia 
                                     INNER JOIN dinh_dang ON Bao_gia.MaDD = dinh_dang.MaDD 
                                     INNER JOIN phim ON Dinh_dang.MaDD = phim.MaDD 
                                     INNER JOIN loai_ghe ON loai_ghe.MaLG = Bao_gia.MaLG 
@@ -18,18 +18,20 @@
                                             AND phim.MaPhim = '$movieID'
                                             AND so_ghe.SoGhe = '$chairID'
                                             and bao_gia.MaKTG = ktg.MaKTG
-                    and lich_chieu.MaPhim = phim.MaPhim";
+                                            and lich_chieu.MaPhim = phim.MaPhim";
         
         $total = queryDB($sql);
 
         $optionsHTML = '';
         while ($row = mysqli_fetch_assoc($total)) {
-            $optionsHTML .= "<input type=\"text\" class=\"form-control\" name=\"total\" value='{$row['DonGia']}' disabled/>";
+            $optionsHTML .= "<input type=\"text\" class=\"form-control\" name=\"price\" id=\"price\" value='{$row['DonGia']}' readonly/>";
         }
 
         echo '<div class="mb-3">
               <label class="form-label" for="basic-default-fullname">Giá tiền</label>
               ' . $optionsHTML . '
           </div>';
+
+        echo $sql;
     }
 ?>

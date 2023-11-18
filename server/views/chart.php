@@ -1,7 +1,20 @@
 <?php
     include("../views/base.php");
 
-    $sql = "";
+    $sql = "SELECT p.tenphim, SL_Dat
+                FROM Phim p
+                ORDER BY SL_Dat DESC
+                LIMIT 5";
+    $result = queryDB($sql);
+    // Khởi tạo mảng để lưu trữ dữ liệu từ truy vấn SQL
+    $labels = [];
+    $data = [];
+
+    // Lấy dữ liệu từ kết quả truy vấn và đưa vào mảng
+    while ($row = mysqli_fetch_assoc($result)) {
+        $labels[] = $row['tenphim'];
+        $data[] = $row['SL_Dat'];
+    }
 ?>
 
 <div>
@@ -16,10 +29,10 @@ const ctx = document.getElementById('myChart');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: <?php echo json_encode($labels); ?>,
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: <?php echo json_encode($data); ?>,
             borderWidth: 1
         }]
     },

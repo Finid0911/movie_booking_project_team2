@@ -24,36 +24,46 @@
     $sql_customers = "SELECT * FROM thanh_vien";
     $customers = queryDB($sql_customers);
 
-    if(!empty($_POST['tenPhim']) && !empty($_POST['khachHang']) && !empty($_POST['ktg']) && !empty($_POST['chair']) && !empty($_POST['price'])) {
-        
+    if(!empty($_POST['tenPhim']) && !empty($_POST['khachHang']) && !empty($_POST['ktg']) && !empty($_POST['chair'])) {
+
         $movieID = $_POST['tenPhim'];
         $customerID = $_POST['khachHang'];
         $timeFrame = $_POST['ktg'];
         $chairNo = $_POST['chair'];
+        
         $totalPrice = $_POST['price'];
+        echo $_POST['tenPhim'];
         $sql_price = "SELECT MaGia FROM Gia WHERE DonGia = '$totalPrice'";
         $priceID = queryDB($sql_price);
-        $sql_room = "SELECT MaPhong FROM phong INNER JOIN lich_chieu ON phong.MaPhong = lich_chieu.MaPhong
+        while($row = mysqli_fetch_assoc($priceID)){
+            $priceIDD = $row["MaGia"];
+        }
+        echo $priceIDD;
+        
+        $sql_room = "SELECT lich_chieu.MaPhong as MP FROM phong INNER JOIN lich_chieu ON phong.MaPhong = lich_chieu.MaPhong
                                                 INNER JOIN ghe ON phong.MaPhong = ghe.MaPhong
                                                 INNER JOIN so_ghe ON so_ghe.SoGhe = ghe.SoGhe
                                                 WHERE lich_chieu.MaPhim = '$movieID'
                                                     AND lich_chieu.MaKTG = '$timeFrame'
                                                     AND so_ghe.SoGhe = '$chairNo'";
         $roomID = queryDB($sql_room);
+        while($row = mysqli_fetch_assoc($roomID)){
+            $roomIDD = $row["MP"];
+        }
         $currentDateTime = date('Y-m-d H:i:s');
         
         // get contents
         $id = $myuuid;
-        $sql_insert1 = "INSERT INTO ve VALUE('$id', '$movieID', '$timeFrame', '$chairNo', '$roomID', '$priceID')";
-        $sql_insert2 = "INSERT INTO ds_ve_dat (Ma_thanh_vien, MaVe, NgayDat) VALUES ('$customerID', '$movieID', '$currentDateTime')";
-        $sql_update = "UPDATE ghe SET MaTT='1' WHERE SoGhe='$chairNo' AND MaPhong='$roomID'";
+        $sql_insert1 = "INSERT INTO ve VALUES ('$id', '$movieID', '$timeFrame', '$chairNo', '$roomIDD', '$priceIDD')";
+        $sql_insert2 = "INSERT INTO ds_ve_dat VALUES ('$customerID', '$id', '$currentDateTime')";
+        $sql_update = "UPDATE ghe SET MaTT='1' WHERE SoGhe='$chairNo' AND MaPhong='$roomIDD'";
         
         if(queryDB($sql_insert1) === TRUE && queryDB($sql_insert2) === TRUE && queryDB($sql_update) === TRUE) {
             echo "Book successfully!";
             $message = "Book thành công!";
-            echo "<script>alert('$message');</script>";
-            //echo "<script> window.location.href='http://localhost/movie_booking_project_team2/server/views/?action=getTicket' </script>";
-            header("Location: http://localhost/movie_booking_project_team2/server/views/?action=getTicket");
+            echo "<script>alert('$totalPrice');</script>";
+            echo "<script> window.location.href='http://localhost/movie_booking_project_team2/server/views/?action=getTicket' </script>";
+            //header("Location: http://localhost/movie_booking_project_team2/server/views/?action=getTicket");
         } else {
             //echo "Book unsuccessfully!";
             $message = "Book thất bại!";
@@ -109,10 +119,10 @@
             </select>
         </div>
         <div class="mb-3">
-            <div id="price"></div>
+            <div id="total" name="total"></div>
         </div>
         <button type="button" onclick="back()" class="btn btn-primary">Back</button>
-        <button type="submit" class="btn btn-info">Confirm</button>
+        <button type="submit" class="btn btn-info" id="confirm">Confirm</button>
     </form>
 </div>
 
@@ -136,7 +146,7 @@ function generate_gio_chieu(value) {
     xhr.onreadystatechange = function() {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             let gioChieuDropdown = document.getElementById("ktg");
-            console.log("Data1", this.responseText);
+            //console.log("Data1", this.responseText);
             gioChieuDropdown.innerHTML = this.responseText;
             let selectedTimeFrame = document.getElementById("ktg").value
             generate_chair(selectedTimeFrame)
@@ -173,7 +183,7 @@ function generate_price(value1, value2, value3) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            let price = document.getElementById("price");
+            let price = document.getElementById("total");
             console.log("Data3", this.responseText);
             price.innerHTML = this.responseText;
         }
@@ -195,4 +205,9 @@ function back() {
     console.log("back!");
     window.location.href = "http://localhost/movie_booking_project_team2/server/views/?action=getTicket";
 }
+
+// document.getElementById("confirm").click((event) => {
+//     event.preventDefault();
+//     console.log(document.getElementById("price").value);
+// })
 </script>
