@@ -34,14 +34,42 @@
         $sql_employee = "SELECT * FROM nhan_vien";
         $employees = queryDB($sql_employee);
 
-        if(isset($_POST['tenPhim']) && isset($_POST['anhDaiDien']) && isset($_POST['namSX']) && isset($_POST['thoiLuong']) && isset($_POST['khoiChieu']) 
-            && isset($_POST['daoDien']) && isset($_POST['dienVienChinh']) && isset($_POST['noiDung']) && isset($_POST['trailer']) && isset($_POST['dinhDang']) 
-            && isset($_POST['theLoai']) && isset($_POST['quocGia']) && isset($_POST['nhan']) && isset($_POST['nhanVien'])){
+        if(!empty($_POST['tenPhim']) /*&& !empty($_POST['anhDaiDien'])*/ && !empty($_POST['namSX']) && !empty($_POST['thoiLuong']) && !empty($_POST['khoiChieu']) 
+            && !empty($_POST['daoDien']) && !empty($_POST['dienVienChinh']) && !empty($_POST['noiDung']) && !empty($_POST['trailer']) && !empty($_POST['dinhDang']) 
+            && !empty($_POST['theLoai']) && !empty($_POST['quocGia']) && !empty($_POST['nhan']) && !empty($_POST['nhanVien'])){
+
+                // handle image upload
+                $file_tmp= isset($_FILES['anhDaiDien']['tmp_name']) ? $_FILES['anhDaiDien']['tmp_name'] : "";
+                $file_name=isset($_FILES['anhDaiDien']['name']) ? $_FILES['anhDaiDien']['name'] : "";
+                $file_type=isset($_FILES['anhDaiDien']['type']) ? $_FILES['anhDaiDien']['type'] : "";
+                $file_size=isset($_FILES['anhDaiDien']['size']) ? $_FILES['anhDaiDien']['size'] : "";
+                $file_error=isset($_FILES['anhDaiDien']['error']) ? $_FILES['anhDaiDien']['error'] : "";
+                //Lay gio cua he thong
+                $dmyhis= date("Y").date("m").date("d").date("H").date("i").date("s");
+                //Lay ngay cua he thong
+                $ngay=date("Y").":".date("m").":".date("d").":".date("H").":".date("i").":".date("s");
+
+                $file__name__=$dmyhis.$file_name;
+                $upload_dir = "../../client/images/movies/";
+                $target_file = $upload_dir . basename($file__name__);
+                $imageFileType = strtolower(pathinfo($file__name__, PATHINFO_EXTENSION));
+        
+                if($file_name != "" && $imageFileType != "jpg" && $imageFileType != "png" 
+                && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                }
+                if($file_name != ""){
+                    move_uploaded_file($file_tmp, $target_file);
+                }
 
                 // get contents
                 $id = $movieID;
-                $title = $_POST['tenPhim'];
-                $image = $_POST['anhDaiDien'];
+                $title = mb_strtoupper($_POST['tenPhim']);
+                if($file_name != ''){
+                    $image = $file__name__;
+                } else {
+                    $image = $field['AnhDaiDien'];
+                }
                 $yearOP = $_POST['namSX'];
                 $length = $_POST['thoiLuong'];
                 $startDate = $_POST['khoiChieu'];
@@ -73,9 +101,8 @@
                     Ma_NV = '$employee' 
                     WHERE MaPhim = '$id' ";
                 echo $sql_update;
-                echo $title;
+                
                 if(queryDB($sql_update) === TRUE){
-                    
                     echo "Update successfully!";
                     // header("Location: http://localhost/movie_booking_project_team2/server/views/?action=getMovie");
                     echo "<script> window.location.href='http://localhost/movie_booking_project_team2/server/views/?action=getMovie' </script>";
@@ -100,11 +127,14 @@
         <div class="mb-3">
             <label class="form-label" for="basic-default-email">Ảnh đại diện</label>
             <div class="input-group input-group-merge">
-                <input type="text" id="basic-default-email" class="form-control" name="anhDaiDien" />
-                <image />
+                <img src="../../client/images/movies/<?php echo $field['AnhDaiDien'] ?> "
+                    alt="<?php echo $field['AnhDaiDien'] ?>" width='150' height='200' />
             </div>
+            <input type="file" class="form-control" name="anhDaiDien"
+                style="margin-top: 10px; padding: 10px; border: 1px solid; height: 45px; max-width: 400px;"
+                value="<?php echo $field['AnhDaiDien'] ?>" />
         </div>
-        <div class="mb-3">
+        <div class=" mb-3">
             <label class="form-label" for="basic-default-phone">Năm sản xuất</label>
             <input type="text" class="form-control" name="namSX" value="<?php echo $field['NamSX'] ?>" />
         </div>
